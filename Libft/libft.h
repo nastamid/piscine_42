@@ -6,12 +6,14 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 13:58:17 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/04 16:16:39 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/04 18:35:19 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
+# include <sys/types.h>
 
 int				ft_atoi(char *str);
 int				ft_isalpha(int c);
@@ -27,4 +29,5 @@ unsigned int	ft_strlcat(char *dest, char *src, unsigned int size);
 int				ft_strlen(char *str);
 int				ft_strncmp(char *s1, char *s2, unsigned int n);
 int				ft_strlcpy(char *dest, char *src, int size);
+void			*ft_memcpy(void *destination, const void *source, size_t num);
 #endif
