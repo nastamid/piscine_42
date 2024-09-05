@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 13:58:17 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/04 18:35:19 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/05 12:42:28 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,5 @@ int				ft_strlen(char *str);
 int				ft_strncmp(char *s1, char *s2, unsigned int n);
 int				ft_strlcpy(char *dest, char *src, int size);
 void			*ft_memcpy(void *destination, const void *source, size_t num);
+
 #endif
