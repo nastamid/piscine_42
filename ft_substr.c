@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 13:45:04 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/06 15:42:11 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/06 21:29:42 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*subs;
 	size_t	i;
 
-	subs = malloc((len) * sizeof(char));
+	subs = malloc((len + 1) * sizeof(char));
 	if (!subs)
 		return (0);
 	i = 0;
@@ -27,10 +27,11 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		subs[i] = s[start + i];
 		i++;
 	}
+	subs[i] = 0;
 	return (subs);
 }
 
-//  #include <unistd.h>
+// #include <unistd.h>
 
 // int	main(void)
 // {
@@ -38,18 +39,20 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 // 	char	*s2;
 // 	char	*s3;
 // 	char	*s4;
+// 	char	*s5;
+// 	char	str[] = "lorem ipsum dolor sit amet";
 
 // 	s1 = "Hello There! ONCE AGAIN";
 // 	s2 = ft_substr(s1, 2, 5);
 // 	write(1, s2, 5);
 // 	write(1, "\n", 1);
-
 // 	s3 = ft_substr(s1, 0, 5);
 // 	write(1, s3, 5);
 // 	write(1, "\n", 1);
-
 // 	s4 = ft_substr(s1, 7, 10);
 // 	write(1, s4, 3);
 // 	write(1, "\n", 1);
-
+// 	s5 = ft_substr(str, 0, 10);
+// 	write(1, s5, 10);
+// 	write(1, "\n", 1);
 // }
