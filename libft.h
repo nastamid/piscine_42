@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 13:58:17 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/06 09:44:42 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/06 13:44:52 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,5 @@ char			*ft_strnstr(const char *big, const char *little, size_t len);
 void			*ft_calloc(size_t nmemb, size_t size);
 char			*ft_strdup(const char *s);
 char			*ft_strjoin(char const *s1, char const *s2);
+char			*ft_substr(char const *s, unsigned int start, size_t len);
 #endif
