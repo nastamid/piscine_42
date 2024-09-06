@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 15:57:26 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/06 16:23:03 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/06 22:26:46 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,17 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 	len = ft_strlen((char *)s1);
 	start = 0;
-	end = len;
-	i = 1;
+	end = len - 1;
+	i = 0;
 	while (i < len / 2)
 	{
-		if (is_trimmable(s1[i - 1], set))
-			start = i;
-		if (is_trimmable(s1[len - i], set))
-			end = len - i;
+		if (is_trimmable(s1[i], set) && (start - i == 0))
+			start++;
+		if (is_trimmable(s1[len - 1 - i], set) && (end - (len - 1) + i == 0))
+			end--;
 		i++;
 	}
-	res = ft_substr(s1, start, end - start);
+	res = ft_substr(s1, start, end - start + 1);
 	return (res);
 }
 
@@ -55,9 +55,24 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 // int	main(void)
 // {
-// 	char *s1 = "0123456789";
+// 	char s1[] = " Hello There I am Here! ";
+// 	char s2[] = "lorem \n ipsum \t dolor \n sit \t amet";
+// 	char s3[] = " T ";
+// 	char s4[] = " TX ";
 
-// 	char *s2 = ft_strtrim(s1, "01958");
+// 	char *res1 = ft_strtrim(s1, " teH");
+// 	write(1, res1, ft_strlen(res1));
+// 	write(1, "\n", 1);
 
-// 	write(1, s2, 11);
+// 	char *res2 = ft_strtrim(s2, " te");
+// 	write(1, res2, ft_strlen(res2));
+// 	write(1, "\n", 1);
+
+// 	char *res3 = ft_strtrim(s3, " ");
+// 	write(1, res3, ft_strlen(res3));
+// 	write(1, "\n", 1);
+
+// 	char *res4 = ft_strtrim(s4, " X");
+// 	write(1, res4, ft_strlen(res4));
+// 	write(1, "\n", 1);
 // }
