@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 13:58:17 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/08 11:32:06 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/08 12:16:27 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ char			*ft_strtrim(char const *s1, char const *set);
 char			**ft_split(char const *s, char c);
 char			*ft_itoa(int n);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+void			ft_striteri(char *s, void (*f)(unsigned int, char *));
 #endif
 
 /*
