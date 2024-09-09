@@ -6,12 +6,12 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 19:21:03 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/08 19:52:40 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/09 17:09:33 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
 #include "stdlib.h"
+#include "libft.h"
 
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {

@@ -6,11 +6,11 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 22:27:02 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/08 23:35:37 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/09 17:09:00 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "libft.h"
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
@@ -76,10 +76,10 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 // 		printf("%s\n", (char *)temp->content);
 // 		temp = temp->next;
 // 	}
-// 	// Map the original list to a new list
+// 	printf("\nNew list (after mapping):\n");
+
 // 	new_list = ft_lstmap(original_list, set_42, free_content);
 // 	// Display new list
-// 	printf("\nNew list (after mapping):\n");
 // 	temp = new_list;
 // 	while (temp)
 // 	{
