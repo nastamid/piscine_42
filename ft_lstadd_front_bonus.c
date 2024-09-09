@@ -6,11 +6,11 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 17:45:35 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/08 18:31:40 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/09 17:08:52 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "libft.h"
 
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
@@ -23,6 +23,8 @@ void	ft_lstadd_front(t_list **lst, t_list *new)
 
 // #include "stdio.h"
 // #include "stdlib.h"
+//#include "libft.h"
+// 
 
 // int	main(void)
 // {

@@ -6,12 +6,12 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:53:16 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/08 19:18:54 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/09 17:09:35 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
 #include "stdlib.h"
+#include "libft.h"
 
 void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {

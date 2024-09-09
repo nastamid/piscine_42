@@ -1,48 +1,48 @@
+# Basic configuration
 NAME = libft.a
-CODEDIRS = .
-BONUSDIRS = bonus
-INCDIRS = .
 CC = cc
-DEPFLAGS = -MP -MD
-CFLAGS = -Wextra -Werror -Wall $(foreach D,$(INCDIRS),-I$(D)) $(DEPFLAGS)
+CFLAGS = -Wextra -Werror -Wall -MP -MD
 
-# Find all .c files in CODEDIRS and BONUSDIRS
-CFILES = $(foreach D, $(CODEDIRS), $(wildcard $(D)/*.c))
-BONUS_CFILES = $(foreach D, $(BONUSDIRS), $(wildcard $(D)/*.c))
+# Source files
+CFILES = $(wildcard ./*.c)
+BONUS_CFILES = $(wildcard ./*_bonus.c)
 
-OBJECTS = $(patsubst %.c, %.o, $(CFILES))
-BONUS_OBJECTS = $(patsubst %.c, %.o, $(BONUS_CFILES))
+# Object files
+OBJECTS = $(CFILES:.c=.o)
+BONUS_OBJECTS = $(BONUS_CFILES:.c=.o)
 
-DEPFILES = $(patsubst %.c, %.d, $(CFILES))
-BONUS_DEPFILES = $(patsubst %.c, %.d, $(BONUS_CFILES))
+# Dependency files
+DEPFILES = $(CFILES:.c=.d)
+BONUS_DEPFILES = $(BONUS_CFILES:.c=.d)
 
+# Build the library without bonus files
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	ar rcs $@ $^
-	@echo "Build complete. Cleaning up..."
-	@$(MAKE) --no-print-directory clean_temp
 
-bonus: $(BONUS_OBJECTS)
-	ar rcs $(NAME) $^
-	@echo "Bonus build complete. Cleaning up..."
-	@$(MAKE) --no-print-directory clean_temp
+# Build the library with bonus files
+bonus: $(NAME) $(BONUS_OBJECTS)
+	ar rcs $(NAME) $(BONUS_OBJECTS)
 
+# Compile .c files to .o files
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
+# Clean temporary files
 clean_temp:
-	@echo "Cleaning temporary files..."
-	@rm -f $(OBJECTS) $(BONUS_OBJECTS) $(DEPFILES) $(BONUS_DEPFILES)
+	rm -f $(OBJECTS) $(BONUS_OBJECTS) $(DEPFILES) $(BONUS_DEPFILES)
 
-clean:
-	@echo "Cleaning all generated files..."
-	@rm -f $(OBJECTS) $(BONUS_OBJECTS) $(DEPFILES) $(BONUS_DEPFILES) $(NAME)
+# Clean all generated files
+clean: clean_temp
+	rm -f $(NAME)
 
+# Force clean and rebuild
 fclean: clean
 
 re: fclean all
 
+# Mark targets as not files
 .PHONY: all clean clean_temp fclean re bonus
 
 # Include the dependency files

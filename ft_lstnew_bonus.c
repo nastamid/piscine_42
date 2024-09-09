@@ -1,22 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/08 18:35:42 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/08 18:44:28 by nastamid         ###   ########.fr       */
+/*   Created: 2024/09/08 17:29:07 by nastamid          #+#    #+#             */
+/*   Updated: 2024/09/09 17:09:22 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
-t_list	*ft_lstlast(t_list *lst)
+t_list	*ft_lstnew(void *content)
 {
-	if (!lst)
+	t_list	*l;
+
+	l = (t_list *)malloc(sizeof(t_list));
+	if (!l)
 		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
+	l->content = content;
+	l->next = NULL;
+	return (l);
 }
+
+// #include "stdio.h"
+
+// int	main(void)
+// {
+// 	int		content;
+// 	t_list	*l;
+
+// 	content = 100;
+// 	l = ft_lstnew(&content);
+// 	printf("Content: %d\n", *(int *)(l->content));
+// }

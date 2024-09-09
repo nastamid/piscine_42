@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/08 17:29:07 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/08 17:40:46 by nastamid         ###   ########.fr       */
+/*   Created: 2024/09/08 18:45:06 by nastamid          #+#    #+#             */
+/*   Updated: 2024/09/09 17:08:48 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
-#include <stdlib.h>
+#include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list	*l;
-
-	l = (t_list *)malloc(sizeof(t_list));
-	if (!l)
-		return (NULL);
-	l->content = content;
-	l->next = NULL;
-	return (l);
+	if (!lst)
+		return ;
+	if (!lst[0])
+		lst[0] = new;
+	else
+		ft_lstlast(*lst)->next = new;
 }
-
-// #include "stdio.h"
-
-// int	main(void)
-// {
-// 	int		content;
-// 	t_list	*l;
-
-// 	content = 100;
-// 	l = ft_lstnew(&content);
-// 	printf("Content: %d\n", *(int *)(l->content));
-// }
