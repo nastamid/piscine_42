@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 13:45:04 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/09 17:23:23 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/11 23:00:06 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,25 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*subs;
 	size_t	i;
+	size_t	s_len;
 
+	if (!s)
+		return (NULL);
+	s_len = ft_strlen(s);
+	if (start >= s_len)
+		return (ft_strdup(""));
+	if (len > s_len - start)
+		len = s_len - start;
 	subs = malloc((len + 1) * sizeof(char));
 	if (!subs)
-		return (0);
+		return (NULL);
 	i = 0;
 	while (i < len)
 	{
 		subs[i] = s[start + i];
 		i++;
 	}
-	subs[i] = 0;
+	subs[i] = '\0';
 	return (subs);
 }
 
