@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 13:58:17 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/09 17:50:03 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/11 23:35:24 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
+void				ft_striteri(char *s, void (*f)(unsigned int, char *));
 
 // linked lists
 t_list				*ft_lstnew(void *content);
