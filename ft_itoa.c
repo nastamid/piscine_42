@@ -6,31 +6,24 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 11:33:12 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/07 22:41:16 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/11 23:04:36 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-int	abs(int x)
-{
-	if (x < 0)
-		return (-x);
-	return (x);
-}
-
 int	count_digits(int n)
 {
-	int	char_count;
+	int	count;
 
-	char_count = 1;
+	count = 1;
 	while (n / 10)
 	{
-		char_count++;
+		count++;
 		n /= 10;
 	}
-	return (char_count);
+	return (count);
 }
 
 char	*handle_min_int(void)
@@ -39,26 +32,28 @@ char	*handle_min_int(void)
 
 	s = malloc(12 * sizeof(char));
 	if (!s)
-		return (0);
-	s = "-2147483648";
+		return (NULL);
+	s = ft_strdup("-2147483648");
 	return (s);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*s;
-	int		is_negative;
-	int		char_count;
-	int		number;
+	char			*s;
+	int				is_negative;
+	int				char_count;
+	unsigned int	number;
 
-	if (n == 1 << 31)
+	if (n == -2147483648)
 		return (handle_min_int());
 	is_negative = (n < 0);
-	number = abs(n);
+	number = n;
+	if (is_negative)
+		number = -n;
 	char_count = count_digits(number) + is_negative;
 	s = malloc((char_count + 1) * sizeof(char));
 	if (!s)
-		return (0);
+		return (NULL);
 	s[char_count] = '\0';
 	while (char_count > 0)
 	{
