@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 14:52:33 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/09 17:38:27 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/11 23:07:47 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,19 @@
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
 	size_t	i;
+	size_t	src_len;
 
+	src_len = ft_strlen(src);
 	i = 0;
 	if (size == 0)
-		return (ft_strlen(src));
+		return (src_len);
 	while (src[i] && i < (size - 1))
 	{
 		dst[i] = src[i];
 		i++;
 	}
 	dst[i] = '\0';
-	return (ft_strlen(src));
+	return (src_len);
 }
 
 // #include <stdlib.h>

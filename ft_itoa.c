@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 11:33:12 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/11 23:04:36 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/11 23:17:52 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,6 @@ int	count_digits(int n)
 	return (count);
 }
 
-char	*handle_min_int(void)
-{
-	char	*s;
-
-	s = malloc(12 * sizeof(char));
-	if (!s)
-		return (NULL);
-	s = ft_strdup("-2147483648");
-	return (s);
-}
-
 char	*ft_itoa(int n)
 {
 	char			*s;
@@ -45,7 +34,7 @@ char	*ft_itoa(int n)
 	unsigned int	number;
 
 	if (n == -2147483648)
-		return (handle_min_int());
+		return (ft_strdup("-2147483648"));
 	is_negative = (n < 0);
 	number = n;
 	if (is_negative)
