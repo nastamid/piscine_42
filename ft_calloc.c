@@ -6,11 +6,10 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 22:28:50 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/11 23:23:18 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/13 13:24:39 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include <stdlib.h>
 
 void	*ft_calloc(size_t nmemb, size_t size)
