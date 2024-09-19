@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 23:01:11 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/16 22:43:04 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/19 12:51:26 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,13 @@ static void	free_array(char **array, int i)
 	free(array);
 }
 
-char	**ft_split(char const *s, char c)
+char	**fill_array(char **array, const char *s, char c, int count)
 {
-	char	**array;
 	char	*start;
 	char	*end;
 	int		i;
-	int		count;
 
 	i = 0;
-	if (!s)
-		return (NULL);
-	count = count_words(s, c);
-	array = ft_calloc(count + 1, sizeof(char *));
-	if (!array)
-		return (NULL);
 	while (i < count)
 	{
 		while (*s == c)
@@ -73,6 +65,20 @@ char	**ft_split(char const *s, char c)
 		s = end;
 	}
 	return (array[i] = NULL, array);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**array;
+	int		count;
+
+	if (!s)
+		return (NULL);
+	count = count_words(s, c);
+	array = ft_calloc(count + 1, sizeof(char *));
+	if (!array)
+		return (NULL);
+	return (fill_array(array, s, c, count));
 }
 
 // #include <assert.h>
@@ -151,18 +157,14 @@ char	**ft_split(char const *s, char c)
 // {
 // 	const char	*expected1[] = {"hello", "world", NULL};
 // 	const char	*expected2[] = {"abc", "def", "ghi", NULL};
-// 	const char	*expected3[] = {"abc", "", "ghi", NULL};
 // 	const char	*expected5[] = {"one", "two", "three", NULL};
 
 // 	test_ft_split("hello world", ' ', expected1);
 // 	test_ft_split("abc:def:ghi", ':', expected2);
-// 	test_ft_split("abc::ghi", ':', expected3);
 // 	const char *expected4[] = {NULL}; // Empty string case
 // 	test_ft_split("", ' ', expected4);
 // 	test_ft_split("one two three", ' ', expected5);
 // 	const char *expected6[] = {NULL}; // Only delimiter
 // 	test_ft_split(":::::", ':', expected6);
-// 	const char *expected7[] = {NULL}; // NULL input edge case
-// 	test_ft_split(NULL, ' ', expected7);
 // 	return (0);
 // }
