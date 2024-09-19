@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/04 19:31:12 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/13 13:29:37 by nastamid         ###   ########.fr       */
+/*   Created: 2024/09/08 22:22:34 by nastamid          #+#    #+#             */
+/*   Updated: 2024/09/09 17:09:54 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strchr(const char *s, int c)
-{
-	unsigned char	uc;
+#include "libft.h"
 
-	uc = (unsigned char)c;
-	while (*s)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
+{
+	if (!lst && !f)
+		return ;
+	while (lst)
 	{
-		if (*s == uc)
-			return ((char *)s);
-		s++;
+		f(lst->content);
+		lst = lst->next;
 	}
-	if (uc == '\0')
-		return ((char *)s);
-	return (0);
 }

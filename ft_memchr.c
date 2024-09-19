@@ -6,13 +6,13 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 21:52:36 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/05 22:14:13 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/09 17:48:33 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(void *s, int c, size_t n)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
 	unsigned char	*s1;
 

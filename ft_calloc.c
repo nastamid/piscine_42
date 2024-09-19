@@ -6,21 +6,28 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 22:28:50 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/06 09:14:13 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/13 13:24:39 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include <stdlib.h>
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	unsigned char	*p;
+	size_t			total_size;
 	size_t			i;
 
-	p = malloc(nmemb * size);
+	if (nmemb == 0 || size == 0)
+		return (malloc(0));
+	if (nmemb > 18446744073709551615UL / size)
+		return (NULL);
+	total_size = nmemb * size;
+	p = (unsigned char *)malloc(total_size);
+	if (p == NULL)
+		return (NULL);
 	i = 0;
-	while (i < size * nmemb)
+	while (i < total_size)
 	{
 		p[i] = 0;
 		i++;

@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/04 19:31:12 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/13 13:29:37 by nastamid         ###   ########.fr       */
+/*   Created: 2024/09/08 18:35:42 by nastamid          #+#    #+#             */
+/*   Updated: 2024/09/19 13:43:51 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strchr(const char *s, int c)
-{
-	unsigned char	uc;
+#include "libft.h"
 
-	uc = (unsigned char)c;
-	while (*s)
-	{
-		if (*s == uc)
-			return ((char *)s);
-		s++;
-	}
-	if (uc == '\0')
-		return ((char *)s);
-	return (0);
+t_list	*ft_lstlast(t_list *lst)
+{
+	if (!lst)
+		return (NULL);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
 }
