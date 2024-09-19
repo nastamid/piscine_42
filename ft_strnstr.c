@@ -6,12 +6,11 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 20:32:41 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/13 13:26:35 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/19 13:43:06 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "stddef.h"
 
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
