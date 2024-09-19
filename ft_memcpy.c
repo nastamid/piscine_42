@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 18:34:42 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/04 19:11:45 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/11 22:50:53 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 void	*ft_memcpy(void *destination, const void *source, size_t num)
 {
-	char	*des;
-	char	*src;
-	int		i;
+	char		*des;
+	const char	*src;
+	size_t		i;
 
+	if (!destination && !source && num != 0)
+		return (destination);
 	des = (char *)destination;
-	src = (char *)source;
+	src = (const char *)source;
 	i = 0;
-	while (i < (int)num)
+	while (i < num)
 	{
 		des[i] = src[i];
 		i++;

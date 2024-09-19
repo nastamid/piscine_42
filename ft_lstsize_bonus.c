@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/04 19:31:12 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/13 13:29:37 by nastamid         ###   ########.fr       */
+/*   Created: 2024/09/08 18:32:04 by nastamid          #+#    #+#             */
+/*   Updated: 2024/09/09 17:19:23 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strchr(const char *s, int c)
-{
-	unsigned char	uc;
+#include "libft.h"
 
-	uc = (unsigned char)c;
-	while (*s)
+int	ft_lstsize(t_list *lst)
+{
+	int	count;
+
+	if (!lst)
+		return (0);
+	count = 1;
+	while (lst->next)
 	{
-		if (*s == uc)
-			return ((char *)s);
-		s++;
+		count++;
+		lst = lst->next;
 	}
-	if (uc == '\0')
-		return ((char *)s);
-	return (0);
+	return (count);
 }
