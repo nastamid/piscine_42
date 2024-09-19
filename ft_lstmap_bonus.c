@@ -6,12 +6,11 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 22:27:02 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/19 12:54:55 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/19 13:43:49 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "stddef.h"
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
