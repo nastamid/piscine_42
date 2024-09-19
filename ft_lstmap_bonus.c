@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 22:27:02 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/16 22:37:34 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/19 12:54:55 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	{
 		new_content = f(lst->content);
 		new_elem = ft_lstnew(new_content);
-		new_elem = ft_lstnew(f(lst->content));
 		if (!new_elem)
 		{
 			del(new_content);
