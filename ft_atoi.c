@@ -6,11 +6,11 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 23:21:52 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/04 15:35:06 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/20 13:57:25 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	whitespaces(char *str, int *ptr_i)
+static void	whitespaces(char *str, int *ptr_i)
 {
 	int	i;
 
@@ -20,7 +20,7 @@ void	whitespaces(char *str, int *ptr_i)
 	*ptr_i = i;
 }
 
-int	get_sign(char *str, int *ptr_i)
+static int	get_sign(char *str, int *ptr_i)
 {
 	int	sign;
 	int	i;

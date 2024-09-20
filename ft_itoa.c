@@ -6,14 +6,14 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 11:33:12 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/13 13:16:07 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/20 17:08:27 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-int	count_digits(int n)
+static int	count_digits(int n)
 {
 	int	count;
 

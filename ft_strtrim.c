@@ -6,14 +6,14 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 15:57:26 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/06 22:26:46 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/20 17:09:40 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-int	is_trimmable(char c, const char *set)
+static int	is_trimmable(char c, const char *set)
 {
 	int	i;
 

@@ -6,11 +6,11 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 22:32:06 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/03 16:35:42 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/20 17:09:27 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen_local(char *str)
+static int	ft_strlen_local(char *str)
 {
 	int	i;
 
