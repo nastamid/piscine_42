@@ -1,7 +1,7 @@
 # Basic configuration
 NAME = libft.a
 CC = cc
-CFLAGS = -Wextra -Werror -Wall -MP -MD
+CFLAGS = -Wextra -Werror -Wall  -g
 
 # Source files
 CFILES = ft_atoi.c\
@@ -52,36 +52,30 @@ BONUS_CFILES = 	ft_lstadd_back_bonus.c\
 OBJECTS = $(CFILES:.c=.o)
 BONUS_OBJECTS = $(BONUS_CFILES:.c=.o)
 
-# Dependency files
-DEPFILES = $(CFILES:.c=.d)
-BONUS_DEPFILES = $(BONUS_CFILES:.c=.d)
-
 # Build the library without bonus files
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	ar rcs $@ $^
+	ar rcs $@ $?
 
 # Build the library with bonus files
-bonus: $(NAME) $(BONUS_OBJECTS)
+bonus: $(OBJECTS) $(BONUS_OBJECTS)
 	ar rcs $(NAME) $(BONUS_OBJECTS)
 
 # Compile .c files to .o files
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-# Clean temporary files
-clean_temp:
-	rm -f $(OBJECTS) $(BONUS_OBJECTS) $(DEPFILES) $(BONUS_DEPFILES)
+# Clean all generated files except library
+clean: 
+	rm -f $(OBJECTS) $(BONUS_OBJECTS)
 
-# Clean all generated files
-clean: clean_temp
-	rm -f $(NAME)
-
-# Force clean and rebuild
+# Force clean all generated files and library too
 fclean: clean
+	rm -f $(NAME) $(NAME_BONUS)
 
+# Force Rebuild - Force Clean and Rebuild
 re: fclean all
 
 # Mark targets as not files
-.PHONY: all clean clean_temp fclean re bonus
+.PHONY: all clean fclean re bonus
