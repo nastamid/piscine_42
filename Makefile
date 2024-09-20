@@ -2,6 +2,7 @@
 NAME = libft.a
 CC = cc
 CFLAGS = -Wextra -Werror -Wall  -g
+BONUS_FLAG = .bonus
 
 # Source files
 CFILES = ft_atoi.c\
@@ -59,8 +60,16 @@ $(NAME): $(OBJECTS)
 	ar rcs $@ $?
 
 # Build the library with bonus files
-bonus: $(OBJECTS) $(BONUS_OBJECTS)
+bonus : $(NAME) $(BONUS_FLAG)
+
+$(BONUS_FLAG) : $(BONUS_OBJECTS)
 	ar rcs $(NAME) $(BONUS_OBJECTS)
+	touch $(BONUS_FLAG)
+
+# Build the library with bonus files
+#bonus: $(OBJECTS) $(BONUS_OBJECTS)
+#	ar rcs $(NAME) $(BONUS_OBJECTS)
+#	touch $(BONUS_FLAG)
 
 # Compile .c files to .o files
 %.o: %.c
@@ -68,7 +77,7 @@ bonus: $(OBJECTS) $(BONUS_OBJECTS)
 
 # Clean all generated files except library
 clean: 
-	rm -f $(OBJECTS) $(BONUS_OBJECTS)
+	rm -f $(OBJECTS) $(BONUS_OBJECTS) $(BONUS_FLAG)
 
 # Force clean all generated files and library too
 fclean: clean
