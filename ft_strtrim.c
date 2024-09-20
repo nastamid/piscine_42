@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 15:57:26 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/20 17:09:40 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/20 17:41:19 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,17 @@ static int	is_trimmable(char c, const char *set)
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*res;
-	int		i;
-	int		len;
 	int		start;
 	int		end;
 
-	len = ft_strlen((char *)s1);
+	if (!s1 || !set)
+		return (NULL);
 	start = 0;
-	end = len - 1;
-	i = 0;
-	while (i < len / 2)
-	{
-		if (is_trimmable(s1[i], set) && (start - i == 0))
-			start++;
-		if (is_trimmable(s1[len - 1 - i], set) && (end - (len - 1) + i == 0))
-			end--;
-		i++;
-	}
+	end = ft_strlen(s1) - 1;
+	while (s1[start] && is_trimmable(s1[start], set))
+		start++;
+	while (end > start && is_trimmable(s1[end], set))
+		end--;
 	res = ft_substr(s1, start, end - start + 1);
 	return (res);
 }
@@ -59,6 +53,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 // 	char s2[] = "lorem \n ipsum \t dolor \n sit \t amet";
 // 	char s3[] = " T ";
 // 	char s4[] = " TX ";
+// 	char s5[] = "12321";
 
 // 	char *res1 = ft_strtrim(s1, " teH");
 // 	write(1, res1, ft_strlen(res1));
@@ -74,5 +69,9 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 // 	char *res4 = ft_strtrim(s4, " X");
 // 	write(1, res4, ft_strlen(res4));
+// 	write(1, "\n", 1);
+
+// 	char *res5 = ft_strtrim(s5, "123");
+// 	write(1, res5, ft_strlen(res5));
 // 	write(1, "\n", 1);
 // }
