@@ -6,14 +6,14 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 23:01:11 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/19 12:51:26 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/20 17:52:18 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-int	count_words(const char *s, char c)
+static int	count_words(const char *s, char c)
 {
 	int	count;
 	int	in_word;
@@ -40,7 +40,7 @@ static void	free_array(char **array, int i)
 	free(array);
 }
 
-char	**fill_array(char **array, const char *s, char c, int count)
+static char	**fill_array(char **array, const char *s, char c, int count)
 {
 	char	*start;
 	char	*end;
