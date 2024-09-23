@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   printf_test.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/23 12:27:31 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/23 12:29:03 by nastamid         ###   ########.fr       */
+/*   Created: 2024/09/23 12:32:58 by nastamid          #+#    #+#             */
+/*   Updated: 2024/09/23 12:40:38 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#include <stdio.h>
+#include "libftprint.h"
 
-# include "libft.h"
-
-int	ft_printf(const char *, ...);
-
-#endif
+int main()
+{
+    printf("--- Printf Test Started ---\n");
+    printf("Hey");
+    ft_printf("hey");
+}
