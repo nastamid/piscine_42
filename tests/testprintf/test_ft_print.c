@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 12:32:58 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/23 14:00:17 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/24 13:49:18 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #define TEST_BUFFER_SIZE 1024
 
 // Utility function to capture output from printf/ft_printf
-char *capture_output(void (*print_func)(const char *, ...), const char *format, ...) {
+char *capture_output(int (*print_func)(const char *, ...), const char *format, ...) {
     // Redirect stdout to a file
     int stdout_fd = dup(STDOUT_FILENO);
     int fd[2];
@@ -46,7 +46,7 @@ char *capture_output(void (*print_func)(const char *, ...), const char *format, 
     return output;
 }
 
-void run_test(const char *test_name, const char *expected_output, void (*print_func)(const char *, ...), const char *format, ...) {
+void run_test(const char *test_name, const char *expected_output, int (*print_func)(const char *, ...), const char *format, ...) {
     char *output = capture_output(print_func, format);
     
     if (strcmp(output, expected_output) == 0) {
