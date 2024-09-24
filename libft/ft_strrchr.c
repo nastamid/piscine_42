@@ -6,30 +6,33 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 19:30:46 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/13 13:33:45 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/24 12:52:43 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 
 char	*ft_strrchr(const char *s, int c)
 {
-	char	*last_occurrence;
+	char	*last_char;
 
-	last_occurrence = NULL;
-	while (*s)
+	if (*s == '\0')
 	{
-		if (*s == (char)c)
-		{
-			last_occurrence = (char *)s;
-		}
-		s++;
+		if (c == '\0')
+			return ((char *)s);
+		else
+			return (NULL);
 	}
 	if ((char)c == '\0')
+		return ((char *)s + ft_strlen(s));
+	last_char = (char *)s + ft_strlen(s) - 1;
+	while (last_char >= s)
 	{
-		return ((char *)s);
+		if (*last_char == (unsigned char)c)
+			return ((char *)last_char);
+		last_char--;
 	}
-	return (last_occurrence);
+	return (NULL);
 }
 
 // #include "libft.h"
@@ -59,8 +62,7 @@ char	*ft_strrchr(const char *s, int c)
 // 	run_test("Test 4 - Character Appears Multiple Times", "banana", 'a', "ana");
 // 	run_test("Test 5 - Empty String", "", 'a', NULL);
 // 	run_test("Test 6 - Search in String of Length 1", "a", 'a', "a");
-// 	// run_test("Test 7 - Non-Printable Character", "hello\0world", '\0',
-// "world");
+
 // 	run_test("Test 7 - Null String Pointer", NULL, 'a', NULL);
 
 // 	return (0);
