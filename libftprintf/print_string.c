@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   print_string.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/23 12:27:31 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/28 15:13:33 by nastamid         ###   ########.fr       */
+/*   Created: 2024/09/28 15:17:27 by nastamid          #+#    #+#             */
+/*   Updated: 2024/09/28 15:22:40 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#include <unistd.h>
+#include "libft.h"
 
-# include "libft.h"
-
-int	print_char(char c);
-int	print_digit(int digit);
-int	ft_printf(const char *, ...);
-
-#endif
+int	print_string(char *str)
+{
+	return (write(1, str, ft_strlen(str)));
+}

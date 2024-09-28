@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 13:58:17 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/20 17:47:33 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/28 14:53:32 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int					ft_isascii(int c);
 int					ft_isprint(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
+void				ft_putchar(char c);
 
 // memory
 void				*ft_memset(void *b, int c, size_t len);

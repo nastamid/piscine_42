@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 12:32:58 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/24 13:49:18 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/26 17:49:45 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <stdarg.h>
 #include "libftprintf.h"  // Include your custom header
 
 #define TEST_BUFFER_SIZE 1024
