@@ -1,7 +1,7 @@
 # Basic configuration
 NAME = libftprintf.a
 CC = cc
-CFLAGS = -std=c2x -Wextra -Werror -Wall  -g -L./libft -lft -I./libft 
+CFLAGS = -std=c2x -Wextra -Werror -Wall  -g  -I./libft 
 
 # Libft
 LIBFT_DIR = ./libft
@@ -9,9 +9,10 @@ LIBFT = $(LIBFT_DIR)/libft.a
 
 # Source files
 CFILES = ft_printf.c\
-	print_digit.c\
 	print_char.c\
-	print_string.c
+	print_string.c\
+	print_digit.c\
+	print_pointer.c\
 
 # Object files
 OBJECTS = $(CFILES:.c=.o)
