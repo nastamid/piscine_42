@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 12:04:10 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/30 17:58:41 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/30 21:13:28 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,42 +35,32 @@ int	print_format(char format, va_list ap)
 	return (0);
 }
 
-int	ft_printf(const char *format, ...)
+int	vft_printf(const char *format, va_list args)
 {
-	va_list	ap;
-	int		count;
+	int	count;
 
 	count = 0;
-	va_start(ap, format);
 	while (*format)
 	{
 		if (*format == '%')
 		{
 			format++;
-			count += print_format(*format, ap);
+			count += print_format(*format, args);
 		}
 		else
 			count += print_char(*format);
 		format++;
 	}
-	va_end(ap);
 	return (count);
 }
 
-#include <stdio.h>
-
-int	main(void)
+int	ft_printf(const char *format, ...)
 {
-	int	k;
-	int	*p;
+	va_list	args;
+	int		result;
 
-	k = 5;
-	p = &k;
-	ft_printf("char: %c \n", 'C');
-	ft_printf("string: %s \n", "I am ^^ && ** (( $$ %% string!");
-	ft_printf("pointer %p\n", p);
-	printf("Origianl_pointer %p\n", p);
-	// ft_printf("decimal: %d \n", 123.12);
-	printf("decimal %f", 123.12);
-	// ft_printf("Int: %i, char: %c\n", 42, 'q');
+	va_start(args, format);            // Initialize the va_list
+	result = vft_printf(format, args); // Call vft_printf with va_list
+	va_end(args);                      // Clean up the va_list
+	return (result);
 }

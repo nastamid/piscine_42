@@ -5,75 +5,97 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/23 12:32:58 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/26 17:49:45 by nastamid         ###   ########.fr       */
+/*   Created: 2024/09/30 17:56:47 by codespace         #+#    #+#             */
+/*   Updated: 2024/09/30 21:21:47 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdarg.h>
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include <stdarg.h>
-#include "libftprintf.h"  // Include your custom header
+#include "libftprintf.h"
 
-#define TEST_BUFFER_SIZE 1024
 
-// Utility function to capture output from printf/ft_printf
-char *capture_output(int (*print_func)(const char *, ...), const char *format, ...) {
-    // Redirect stdout to a file
-    int stdout_fd = dup(STDOUT_FILENO);
-    int fd[2];
-    pipe(fd);
-    dup2(fd[1], STDOUT_FILENO);
-    close(fd[1]);
-
-    // Use va_list for forwarding variadic arguments
+// Function to capture the output of ft_printf
+char* capture_ft_printf_output(const char *format, ...)
+{
     va_list args;
-    va_start(args, format);
-    print_func(format, args);
-    va_end(args);
+    char buffer[1024] = {0}; // Buffer to store captured output
 
-    // Restore stdout and capture output
-    fflush(stdout);
-    dup2(stdout_fd, STDOUT_FILENO);
-    close(stdout_fd);
+    // Save the original stdout
+    int saved_stdout = dup(STDOUT_FILENO);
 
-    char *output = malloc(TEST_BUFFER_SIZE);
-    read(fd[0], output, TEST_BUFFER_SIZE);
-    close(fd[0]);
-
-    return output;
-}
-
-void run_test(const char *test_name, const char *expected_output, int (*print_func)(const char *, ...), const char *format, ...) {
-    char *output = capture_output(print_func, format);
-    
-    if (strcmp(output, expected_output) == 0) {
-        printf("[PASS] %s\n", test_name);
-    } else {
-        printf("[FAIL] %s\n", test_name);
-        printf("Expected: %s\n", expected_output);
-        printf("Got     : %s\n", output);
+    // Create a pipe to capture the output
+    int pipefd[2];
+    if (pipe(pipefd) == -1)
+    {
+        perror("pipe");
+        return NULL;
     }
 
-    free(output);
+    // Redirect stdout to the write end of the pipe
+    dup2(pipefd[1], STDOUT_FILENO);
+    close(pipefd[1]);  // Close the write end of the pipe, it's now duplicated
+
+    // Initialize va_list and call ft_printf
+    va_start(args, format);
+    vft_printf(format, args);  // Pass the format and arguments to ft_printf
+    va_end(args);
+
+    // Restore the original stdout
+    fflush(stdout);
+    dup2(saved_stdout, STDOUT_FILENO);
+    close(saved_stdout);
+
+    // Read the captured output from the pipe
+    read(pipefd[0], buffer, sizeof(buffer) - 1);
+    close(pipefd[0]);  // Close the read end of the pipe
+
+    // Duplicate the buffer content into a heap-allocated string to return
+    char *captured_output = strdup(buffer);
+    return captured_output; // Remember to free this in the calling code
 }
 
-int main() {
-    // Basic test for a simple string
-    run_test("Test 1: Basic string", "Hello, World!\n", ft_printf, "Hello, %s!\n", "World");
-    
-    // Test with integers
-    run_test("Test 2: Integer", "42\n", ft_printf, "%d\n", 42);
+// Function to compare outputs of ft_printf and printf
+void	compare_outputs(const char *format, ...)
+{
+	va_list	args;
 
-    // Test with hex numbers
-    run_test("Test 3: Hexadecimal", "2a\n", ft_printf, "%x\n", 42);
+	char* ft_output;  // Buffer to hold output of ft_printf
+	char std_output[256]; // Buffer to hold output of printf
+	// Test ft_printf
+	va_start(args, format);
+	ft_output = capture_ft_printf_output(format);
+	va_end(args);
+	// Test printf
+	va_start(args, format);
+	vsnprintf(std_output, sizeof(std_output), format, args);
+	va_end(args);
+	// Compare outputs
+	if (strcmp(ft_output, std_output) == 0)
+	{
+		 printf("\033[0;32m[PASS]\033[0m Output: %s\n", ft_output);
+	}
+	else
+	{
+		printf("\033[0;31m[FAIL]\033[0m Outputs do not match!\n");
+		printf("ft_printf: %s\n", ft_output);
+		printf("printf: %s\n", std_output);
+		printf("\n");
+	}
+}
 
-    // Test with mixed inputs
-    run_test("Test 4: Mixed inputs", "String: hello, Int: 123, Hex: 7b\n", ft_printf, "String: %s, Int: %d, Hex: %x\n", "hello", 123, 123);
-    
-    // Add more tests here as you implement different functionalities
-    return 0;
+int	main(void)
+{
+	int k = 5;
+	int *p = &k;
+	compare_outputs("Hello %s", "I am ^^ && ** (( $$ %% string! \0 ABC");
+	compare_outputs("%p", p);
+	compare_outputs("%d", 5);
+	compare_outputs("%c", 'a');
+	compare_outputs("%x", 10);
+	return (0);
 }
