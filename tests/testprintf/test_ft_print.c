@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:56:47 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/30 21:28:14 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/30 21:56:44 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 #include <string.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 
 // Function to capture the output of ft_printf
-char* capture_ft_printf_output(const char *format, ...)
+static char* capture_ft_printf_output(const char *format, ...)
 {
     va_list args;
     char buffer[1024] = {0}; // Buffer to store captured output
@@ -60,7 +60,7 @@ char* capture_ft_printf_output(const char *format, ...)
 }
 
 // Function to compare outputs of ft_printf and printf
-void	compare_outputs(const char *format, ...)
+static void	compare_outputs(const char *format, ...)
 {
 	va_list	args;
 
