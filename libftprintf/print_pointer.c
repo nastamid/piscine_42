@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:32:59 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/30 21:38:53 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/30 21:41:46 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ int	print_pointer(void *ptr)
 	int			remainder;
 	int			counter;
 
+	if (!ptr)
+		return (0);
 	address = (uintptr_t)ptr;
 	i = 0;
 	counter = 0;
 	remainder = 0;
-	if (!ptr)
-		return (0);
 	while (address)
 	{
 		remainder = address % 16;
