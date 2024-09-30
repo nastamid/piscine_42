@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:56:47 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/30 21:21:47 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/30 21:24:58 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,54 @@ void	compare_outputs(const char *format, ...)
 
 int	main(void)
 {
-	int k = 5;
+	int k = 42;
 	int *p = &k;
-	compare_outputs("Hello %s", "I am ^^ && ** (( $$ %% string! \0 ABC");
-	compare_outputs("%p", p);
-	compare_outputs("%d", 5);
-	compare_outputs("%c", 'a');
-	compare_outputs("%x", 10);
-	return (0);
+	unsigned int u_num = 4294967295; // Largest unsigned int value
+
+	// Test %c: Prints a single character
+	compare_outputs("Single character: %c", 'A');
+	compare_outputs("Multiple characters: %c %c %c", 'A', 'B', 'C');
+
+	// Test %s: Prints a string
+	compare_outputs("Simple string: %s", "Hello, World!");
+	compare_outputs("Empty string: %s", "");
+	compare_outputs("String with special chars: %s", "This is a string with % and \\ characters.");
+
+	// Test %p: Prints a pointer in hexadecimal format
+	compare_outputs("Pointer address: %p", p);
+	compare_outputs("Null pointer: %p", NULL);
+
+	// Test %d: Prints a decimal number (base 10)
+	compare_outputs("Positive decimal: %d", 12345);
+	compare_outputs("Negative decimal: %d", -12345);
+	compare_outputs("Zero decimal: %d", 0);
+
+	// Test %i: Prints an integer in base 10 (same as %d)
+	compare_outputs("Positive integer: %i", 67890);
+	compare_outputs("Negative integer: %i", -67890);
+	compare_outputs("Zero integer: %i", 0);
+
+	// Test %u: Prints an unsigned decimal (base 10)
+	compare_outputs("Unsigned int max: %u", u_num);
+	compare_outputs("Unsigned zero: %u", 0);
+	compare_outputs("Small unsigned: %u", 42);
+
+	// Test %x: Prints a number in hexadecimal (lowercase)
+	compare_outputs("Hexadecimal lowercase (positive): %x", 255); // Should print "ff"
+	compare_outputs("Hexadecimal lowercase (zero): %x", 0); // Should print "0"
+
+	// Test %X: Prints a number in hexadecimal (uppercase)
+	compare_outputs("Hexadecimal uppercase (positive): %X", 255); // Should print "FF"
+	compare_outputs("Hexadecimal uppercase (zero): %X", 0); // Should print "0"
+
+	// Test %%: Prints a percent sign
+	compare_outputs("Percent sign: %%");
+	compare_outputs("Multiple percent signs: %% %% %%");
+
+	// Edge cases
+	compare_outputs("Mixed formats: %c %s %d %p %% %x %X", 'X', "Testing", 42, p, 255, 255);
+	compare_outputs("Null string: %s", NULL);
+
+	return 0;
 }
+
