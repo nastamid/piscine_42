@@ -6,12 +6,12 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:32:59 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/30 21:41:46 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/30 21:50:48 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 #include "libft.h"
-#include "libftprintf.h"
 #include <stdint.h>
 
 int	print_pointer(void *ptr)
@@ -26,7 +26,7 @@ int	print_pointer(void *ptr)
 		return (0);
 	address = (uintptr_t)ptr;
 	i = 0;
-	counter = 0;
+	counter = print_string("0x");
 	remainder = 0;
 	while (address)
 	{
@@ -38,7 +38,6 @@ int	print_pointer(void *ptr)
 		i++;
 		address /= 16;
 	}
-	counter += print_string("0x");
 	while (i--)
 		counter += print_char(hex[i]);
 	return (counter);

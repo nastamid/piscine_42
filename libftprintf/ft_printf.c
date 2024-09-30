@@ -6,15 +6,15 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 12:04:10 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/30 21:13:28 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/09/30 21:56:56 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 #include <stdarg.h>
 #include <stdio.h>
 
-int	print_format(char format, va_list ap)
+static int	print_format(char format, va_list ap)
 {
 	if (format == 'c')
 		return (print_char(va_arg(ap, int)));
@@ -59,8 +59,8 @@ int	ft_printf(const char *format, ...)
 	va_list	args;
 	int		result;
 
-	va_start(args, format);            // Initialize the va_list
-	result = vft_printf(format, args); // Call vft_printf with va_list
-	va_end(args);                      // Clean up the va_list
+	va_start(args, format);
+	result = vft_printf(format, args);
+	va_end(args);
 	return (result);
 }
