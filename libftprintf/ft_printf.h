@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 12:27:31 by nastamid          #+#    #+#             */
-/*   Updated: 2024/10/01 10:49:27 by codespace        ###   ########.fr       */
+/*   Updated: 2024/10/01 12:39:40 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	print_string(char *str);
 int	print_digit(int digit);
 int	print_udigit(unsigned int digit);
 int	print_pointer(void *ptr);
-int	print_hex(int n, bool is_uppercase);
+int	print_hex(long n, bool is_uppercase);
 int	vft_printf(const char *format, va_list args);
 int	ft_printf(const char *, ...);
 
