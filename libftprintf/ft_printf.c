@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 12:04:10 by nastamid          #+#    #+#             */
-/*   Updated: 2024/10/01 10:22:32 by codespace        ###   ########.fr       */
+/*   Updated: 2024/10/01 10:49:30 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static int	print_format(char format, va_list ap)
 	else if (format == 'u')
 		return (print_udigit(va_arg(ap, int)));
 	else if (format == 'x')
-		return (print_char(va_arg(ap, int)));
+		return (print_hex(va_arg(ap, int), false));
 	else if (format == 'X')
-		return (print_char(va_arg(ap, int)));
+		return (print_hex(va_arg(ap, int), true));
 	return (0);
 }
 

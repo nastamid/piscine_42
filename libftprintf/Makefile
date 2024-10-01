@@ -13,6 +13,7 @@ CFILES = ft_printf.c\
 	print_string.c\
 	print_digit.c\
 	print_pointer.c\
+	print_hex.c\
 
 # Object files
 OBJECTS = $(CFILES:.c=.o)
