@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 10:31:42 by codespace         #+#    #+#             */
-/*   Updated: 2024/10/01 13:23:36 by codespace        ###   ########.fr       */
+/*   Updated: 2024/10/01 15:12:09 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,13 @@ static char	*number_to_hex(long number, bool is_uppercase)
 int	print_hex(long n, bool is_uppercase)
 {
 	char	*hex;
+	int		char_count;
 
+	char_count = 0;
 	hex = number_to_hex(n, is_uppercase);
-	print_string(hex);
-	return (ft_strlen(hex));
+	if (hex)
+	{
+		char_count = print_string(hex);
+	}
+	return (char_count);
 }

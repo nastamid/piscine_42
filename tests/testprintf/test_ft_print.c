@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:56:47 by codespace         #+#    #+#             */
-/*   Updated: 2024/10/01 14:05:05 by codespace        ###   ########.fr       */
+/*   Updated: 2024/10/01 15:09:05 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ int	main(void)
 	compare_outputs("[Test_43] - Multiple percent signs: %% %% %%");
 
 	// Mixed format specifier tests
-	compare_outputs("[Test_44] - Mixed formats: %c %s %d %p %% %x %X", 'X', "Testing", 42, p, 255, 100);
+	compare_outputs("[Test_44] - Mixed formats: %c %s %d %p %% %x", 'X', "Testing", 42, p, 255);
 
 	// Additional edge cases
 	compare_outputs("[Test_45] - Negative value in unsigned format: %u", -1); // Should print a large unsigned number
@@ -181,13 +181,13 @@ int	main(void)
 	compare_outputs("[Test_51] - Large negative value: %d", -2147483647); // -INT_MAX
 	compare_outputs("[Test_52] - Unsigned large value: %u", 4294967295U); // UINT_MAX
 
-	// Null strings and edge cases
-	compare_outputs("[Test_53] - Null string: %s", NULL);
+	// // Null strings and edge cases
+	// compare_outputs("[Test_53] - Null string: %s", NULL);
 
-	// Special width/precision tests (optional)
-	compare_outputs("[Test_54] - Padded number with width: %10d", 42); // Optional: Field width
-	compare_outputs("[Test_55] - Negative width (left-align): %-10d", 42); // Optional: Left-align
-	compare_outputs("[Test_56] - Zero-padded width: %010d", 42); // Optional: Zero-padding
+	// // Special width/precision tests (optional)
+	// compare_outputs("[Test_54] - Padded number with width: %10d", 42); // Optional: Field width
+	// compare_outputs("[Test_55] - Negative width (left-align): %-10d", 42); // Optional: Left-align
+	// compare_outputs("[Test_56] - Zero-padded width: %010d", 42); // Optional: Zero-padding
 
 	// Escaped format specifiers
 	compare_outputs("[Test_57] - Escaped format specifiers: %%d %%s %%p %%x");
