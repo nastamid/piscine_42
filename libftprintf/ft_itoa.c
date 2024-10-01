@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_digit.c                                      :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/26 17:45:19 by nastamid          #+#    #+#             */
-/*   Updated: 2024/10/01 14:44:02 by codespace        ###   ########.fr       */
+/*   Created: 2024/09/07 11:33:12 by nastamid          #+#    #+#             */
+/*   Updated: 2024/10/01 14:43:44 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdlib.h>
-#include <unistd.h>
 
-static int	count_digits(long n)
+static int	count_digits(int n)
 {
 	int	count;
 
@@ -27,14 +26,20 @@ static int	count_digits(long n)
 	return (count);
 }
 
-char	*ft_uitoa(unsigned int n)
+char	*ft_itoa(int n)
 {
-	char	*s;
-	int		char_count;
-	long	number;
+	char			*s;
+	int				is_negative;
+	int				char_count;
+	unsigned int	number;
 
-	number = (long)n;
-	char_count = count_digits(number);
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	is_negative = (n < 0);
+	number = n;
+	if (is_negative)
+		number = -n;
+	char_count = count_digits(number) + is_negative;
 	s = malloc((char_count + 1) * sizeof(char));
 	if (!s)
 		return (NULL);
@@ -44,41 +49,20 @@ char	*ft_uitoa(unsigned int n)
 		s[--char_count] = (number % 10) + '0';
 		number /= 10;
 	}
+	if (is_negative)
+		s[0] = '-';
 	return (s);
 }
 
-int	print_digit(int digit)
-{
-	char	*s;
-	int		count;
+// #include <stdio.h>
 
-	count = 0;
-	if (digit == -2147483648)
-	{
-		return (write(1, "-2147483648", 11));
-	}
-	s = ft_itoa(digit);
-	if (s)
-	{
-		count = write(1, s, ft_strlen(s));
-		free(s);
-		return (count);
-	}
-	return (0);
-}
-
-int	print_udigit(unsigned int digit)
-{
-	char	*s;
-	int		count;
-
-	count = 0;
-	s = ft_uitoa(digit);
-	if (s)
-	{
-		count = write(1, s, ft_strlen(s));
-		free(s);
-		return (count);
-	}
-	return (0);
-}
+// int	main(void)
+// {
+// 	printf("%s\n", ft_itoa(26654));
+// 	printf("%s\n", ft_itoa(2147483647));
+// 	printf("%s\n", ft_itoa(-2147483648));
+// 	printf("%s\n", ft_itoa(-2147483647));
+// 	printf("%s\n", ft_itoa(0));
+// 	printf("%s\n", ft_itoa(-5));
+// 	printf("%s\n", ft_itoa(-6514520));
+// }

@@ -6,12 +6,11 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:32:59 by nastamid          #+#    #+#             */
-/*   Updated: 2024/10/01 12:04:11 by codespace        ###   ########.fr       */
+/*   Updated: 2024/10/01 14:39:57 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
 #include <stdint.h>
 
 int	print_pointer(void *ptr)

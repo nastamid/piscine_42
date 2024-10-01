@@ -1,28 +1,25 @@
 # Basic configuration
 NAME = libftprintf.a
 CC = cc
-CFLAGS = -std=c2x -Wextra -Werror -Wall  -g  -I./libft 
-
-# Libft
-LIBFT_DIR = ./libft
-LIBFT = $(LIBFT_DIR)/libft.a
+CFLAGS = -std=c2x -Wextra -Werror -Wall  -g  
 
 # Source files
-CFILES = ft_printf.c\
+CFILES = ft_strlen.c\
+	ft_strdup.c\
+	ft_itoa.c\
+	ft_printf.c\
 	print_char.c\
 	print_string.c\
 	print_digit.c\
 	print_pointer.c\
 	print_hex.c\
+	
 
 # Object files
 OBJECTS = $(CFILES:.c=.o)
 
 # Build the library
-all: $(LIBFT) $(NAME)
-
-$(LIBFT):
-	@$(MAKE) -C $(LIBFT_DIR)
+all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	ar rcs $@ $?
@@ -34,12 +31,10 @@ $(NAME): $(OBJECTS)
 # Clean all generated files except library
 clean: 
 	rm -f $(OBJECTS)
-	@$(MAKE) -C $(LIBFT_DIR) clean
 
 # Force clean all generated files and library too
 fclean: clean
 	rm -f $(NAME) 
-	@$(MAKE) -C $(LIBFT_DIR) fclean
 
 # Force Rebuild - Force Clean and Rebuild
 re: fclean all

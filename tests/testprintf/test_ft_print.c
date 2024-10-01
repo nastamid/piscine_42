@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:56:47 by codespace         #+#    #+#             */
-/*   Updated: 2024/10/01 13:24:45 by codespace        ###   ########.fr       */
+/*   Updated: 2024/10/01 14:05:05 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 static char* capture_ft_printf_output(const char *format, ...)
 {
     va_list args;
-    char buffer[1024] = {0}; // Buffer to store captured output
+    char buffer[2048] = {0}; // Buffer to store captured output
 
     // Save the original stdout
     int saved_stdout = dup(STDOUT_FILENO);
@@ -66,7 +66,7 @@ static void	compare_outputs(const char *format, ...)
 	va_list	args;
 
 	char* ft_output;  // Buffer to hold output of ft_printf
-	char std_output[256]; // Buffer to hold output of printf
+	char std_output[2048]; // Buffer to hold output of printf
 	 int ft_chars, std_chars;
 	// Test ft_printf
 	va_start(args, format);
@@ -159,7 +159,7 @@ int	main(void)
 	compare_outputs("[Test_43] - Multiple percent signs: %% %% %%");
 
 	// Mixed format specifier tests
-	compare_outputs("[Test_44] - Mixed formats: %c %s %d %p %% %x %X", 'X', "Testing", 42, p, 255, 255);
+	compare_outputs("[Test_44] - Mixed formats: %c %s %d %p %% %x %X", 'X', "Testing", 42, p, 255, 100);
 
 	// Additional edge cases
 	compare_outputs("[Test_45] - Negative value in unsigned format: %u", -1); // Should print a large unsigned number

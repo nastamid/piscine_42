@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 12:04:10 by nastamid          #+#    #+#             */
-/*   Updated: 2024/10/01 13:11:40 by codespace        ###   ########.fr       */
+/*   Updated: 2024/10/01 14:03:56 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,3 +64,19 @@ int	ft_printf(const char *format, ...)
 	va_end(args);
 	return (result);
 }
+
+/* #include <stdio.h>
+
+int	main(void)
+{
+	
+	int				int_test;
+
+
+	int_test = 155;
+
+	printf("%% %c %s %d %i %u %x %X %p %%\n", 'A', "Hello", 255, 255, 255, 255,
+		255, &int_test);
+	ft_printf("%% %c %s %d %i %u %x %X %p %%\n", 'A', "Hello", 255, 255, 255,
+		255, 255, &int_test);
+} */

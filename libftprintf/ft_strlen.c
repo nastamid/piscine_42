@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_string.c                                     :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/28 15:17:27 by nastamid          #+#    #+#             */
-/*   Updated: 2024/10/01 14:43:53 by codespace        ###   ########.fr       */
+/*   Created: 2024/07/22 23:20:15 by nastamid          #+#    #+#             */
+/*   Updated: 2024/09/04 16:22:35 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <unistd.h>
-
-int	print_string(char *str)
+int	ft_strlen(char *str)
 {
-	if (!str)
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
-	return (write(1, str, ft_strlen(str)));
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
+
+// #include <stdio.h>
+// int main (int argc, char *argv[])
+// {
+// 	printf("%d", ft_strlen(argv[1]));
+// }
