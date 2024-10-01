@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:32:59 by nastamid          #+#    #+#             */
-/*   Updated: 2024/10/01 14:39:57 by codespace        ###   ########.fr       */
+/*   Updated: 2024/10/01 14:49:44 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@ int	print_pointer(void *ptr)
 	int			counter;
 
 	if (!ptr)
-	{
-		print_string("(nil)");
-		return (5);
-	}
+		return (print_string("(nil)"), 5);
 	address = (uintptr_t)ptr;
 	i = 0;
 	counter = print_string("0x");
