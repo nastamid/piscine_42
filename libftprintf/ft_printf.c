@@ -6,13 +6,12 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 12:04:10 by nastamid          #+#    #+#             */
-/*   Updated: 2024/10/01 10:49:30 by codespace        ###   ########.fr       */
+/*   Updated: 2024/10/01 12:02:32 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdarg.h>
-#include <stdio.h>
 
 static int	print_format(char format, va_list ap)
 {
@@ -32,7 +31,8 @@ static int	print_format(char format, va_list ap)
 		return (print_hex(va_arg(ap, int), false));
 	else if (format == 'X')
 		return (print_hex(va_arg(ap, int), true));
-	return (0);
+	else
+		return (print_char(format));
 }
 
 int	vft_printf(const char *format, va_list args)

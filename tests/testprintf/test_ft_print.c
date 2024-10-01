@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_ft_print.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:56:47 by codespace         #+#    #+#             */
-/*   Updated: 2024/09/30 21:56:44 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/10/01 11:53:12 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,5 +140,3 @@ int	main(void)
 
 	return 0;
 }
-
-
