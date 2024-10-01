@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:56:47 by codespace         #+#    #+#             */
-/*   Updated: 2024/10/01 11:53:12 by codespace        ###   ########.fr       */
+/*   Updated: 2024/10/01 12:21:08 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ static void	compare_outputs(const char *format, ...)
 
 	char* ft_output;  // Buffer to hold output of ft_printf
 	char std_output[256]; // Buffer to hold output of printf
+	 int ft_chars, std_chars;
 	// Test ft_printf
 	va_start(args, format);
 	ft_output = capture_ft_printf_output(format);
@@ -75,17 +76,19 @@ static void	compare_outputs(const char *format, ...)
 	vsnprintf(std_output, sizeof(std_output), format, args);
 	va_end(args);
 	// Compare outputs
-	if (strcmp(ft_output, std_output) == 0)
-	{
-		 printf("\033[0;32m[PASS]\033[0m Output: %s\n", ft_output);
-	}
-	else
-	{
-		printf("\033[0;31m[FAIL]\033[0m Outputs do not match!\n");
-		printf("ft_printf: %s\n", ft_output);
-		printf("printf: %s\n", std_output);
-		printf("\n");
-	}
+	ft_chars = ft_strlen(ft_output);
+	std_chars = ft_strlen(std_output);
+	 if (strcmp(ft_output, std_output) == 0 && ft_chars == std_chars)
+    {
+        printf("\033[0;32m[PASS]\033[0m Output: %s (chars printed: %d)\n", ft_output, ft_chars);
+    }
+    else
+    {
+        printf("\033[0;31m[FAIL]\033[0m Outputs or printed character count do not match!\n");
+        printf("ft_printf: %s (chars printed: %d)\n", ft_output, ft_chars);
+        printf("printf:    %s (chars printed: %d)\n", std_output, std_chars);
+        printf("\n");
+    }
 }
 
 int	main(void)

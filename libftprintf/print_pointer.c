@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_pointer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:32:59 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/30 21:50:48 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/10/01 12:04:11 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ int	print_pointer(void *ptr)
 	int			counter;
 
 	if (!ptr)
-		return (0);
+	{
+		print_string("(nil)");
+		return (5);
+	}
 	address = (uintptr_t)ptr;
 	i = 0;
 	counter = print_string("0x");
