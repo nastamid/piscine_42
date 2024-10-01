@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 12:04:10 by nastamid          #+#    #+#             */
-/*   Updated: 2024/09/30 21:56:56 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/10/01 10:22:32 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ static int	print_format(char format, va_list ap)
 	else if (format == 'p')
 		return (print_pointer(va_arg(ap, void *)));
 	else if (format == 'd')
-		return (print_char(va_arg(ap, int)));
+		return (print_digit(va_arg(ap, int)));
 	else if (format == 'i')
 		return (print_digit(va_arg(ap, int)));
 	else if (format == 'u')
-		return (print_char(va_arg(ap, int)));
+		return (print_udigit(va_arg(ap, int)));
 	else if (format == 'x')
 		return (print_char(va_arg(ap, int)));
 	else if (format == 'X')
