@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_ft_print.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:56:47 by codespace         #+#    #+#             */
-/*   Updated: 2024/10/02 11:23:13 by codespace        ###   ########.fr       */
+/*   Updated: 2024/10/02 13:50:49 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,6 +216,29 @@ int	main(void)
 
 	// Escaped format specifiers
 	compare_outputs("[Test_68] - Escaped format specifiers: %%d %%s %%p %%x");
+
+	// Undefined behavior tests for ft_printf
+
+	// %d with wrong type (string instead of int)
+	compare_outputs("[UB_Test_1] - Wrong type for %%d: %d", "Hello");
+
+	// %s with wrong type (int instead of string)
+	compare_outputs("[UB_Test_2] - Wrong type for %%s: %s", 42);
+
+	// %p with wrong type (int instead of pointer)
+	compare_outputs("[UB_Test_3] - Wrong type for %%p: %p", 100);
+
+	// Invalid pointer dereferencing
+	int *invalid_ptr = (int *)0xDEADBEEF; // Invalid memory address
+	compare_outputs("[UB_Test_4] - Invalid pointer address: %p", invalid_ptr);
+
+	// Overlapping string (string that’s not properly null-terminated)
+	char overlapping_str[10] = "Test";
+	compare_outputs("[UB_Test_5] - Overlapping string: %s", &overlapping_str[1]);
+
+	// Negative pointer
+	compare_outputs("[UB_Test_6] - Negative pointer: %p", (void *)-1);
+
 
 	return 0;
 }
