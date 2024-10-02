@@ -6,21 +6,14 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 10:31:42 by codespace         #+#    #+#             */
-/*   Updated: 2024/10/01 15:12:09 by codespace        ###   ########.fr       */
+/*   Updated: 2024/10/02 13:16:21 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdlib.h>
 
-static long	ft_abs(long x)
-{
-	if (x < 0)
-		return (-x);
-	return (x);
-}
-
-static int	count_hex(long n)
+static int	count_hex(unsigned int n)
 {
 	int	count;
 
@@ -33,7 +26,7 @@ static int	count_hex(long n)
 	return (count);
 }
 
-static char	*number_to_hex(long number, bool is_uppercase)
+static char	*number_to_hex(unsigned int number, bool is_uppercase)
 {
 	char	*s;
 	int		char_count;
@@ -51,7 +44,7 @@ static char	*number_to_hex(long number, bool is_uppercase)
 	s[char_count] = '\0';
 	while (char_count > 0)
 	{
-		remainder = ft_abs(number % 16);
+		remainder = number % 16;
 		if (remainder < 10)
 			s[--char_count] = remainder + '0';
 		else
@@ -61,7 +54,7 @@ static char	*number_to_hex(long number, bool is_uppercase)
 	return (s);
 }
 
-int	print_hex(long n, bool is_uppercase)
+int	print_hex(unsigned int n, bool is_uppercase)
 {
 	char	*hex;
 	int		char_count;

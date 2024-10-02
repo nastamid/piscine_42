@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:56:47 by codespace         #+#    #+#             */
-/*   Updated: 2024/10/01 15:09:05 by codespace        ###   ########.fr       */
+/*   Updated: 2024/10/02 11:23:13 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ static void	compare_outputs(const char *format, ...)
         printf("printf:    %s (chars printed: %d)\n", std_output, std_chars);
         printf("\n");
     }
+	free (ft_output);
 }
 int	main(void)
 {
@@ -146,40 +147,64 @@ int	main(void)
 	compare_outputs("[Test_34] - Hexadecimal INT_MIN: %x", INT_MIN);
 	compare_outputs("[Test_35] - Hexadecimal UINT_MAX: %x", UINT_MAX);
 
+	compare_outputs("[Test_36] - Hexadecimal lowercase (LONG_MAX): %x", LONG_MAX);  // Should print the hexadecimal representation of LONG_MAX
+	compare_outputs("[Test_37] - Hexadecimal lowercase (LONG_MIN): %x", LONG_MIN);  // Should print the hexadecimal representation of LONG_MIN
+	compare_outputs("[Test_38] - Hexadecimal lowercase (ULONG_MAX): %x", ULONG_MAX);  // Should print the hexadecimal representation of ULONG_MAX
+	compare_outputs("[Test_39] - Hexadecimal lowercase (9223372036854775807LL): %x", 9223372036854775807LL);  // Should print hex for largest signed 64-bit integer
+	compare_outputs("[Test_40] - Hexadecimal lowercase (various large values): %x %x %x %x %x %x %x", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);  // Mix of large, small, and negative values
+
 	// %X: Hexadecimal (uppercase) tests
-	compare_outputs("[Test_36] - Hexadecimal uppercase (positive): %X", 255); // Should print "FF"
-	compare_outputs("[Test_37] - Hexadecimal uppercase (zero): %X", 0); // Should print "0"
-	compare_outputs("[Test_38] - Hexadecimal uppercase for large number: %X", 0x12345678);
-	compare_outputs("[Test_39] - Hexadecimal uppercase INT_MAX: %X", INT_MAX);
-	compare_outputs("[Test_40] - Hexadecimal uppercase INT_MIN: %X", INT_MIN);
-	compare_outputs("[Test_41] - Hexadecimal uppercase UINT_MAX: %X", UINT_MAX);
+	compare_outputs("[Test_41] - Hexadecimal uppercase (positive): %X", 255); // Should print "FF"
+	compare_outputs("[Test_42] - Hexadecimal uppercase (zero): %X", 0); // Should print "0"
+	compare_outputs("[Test_43] - Hexadecimal uppercase for large number: %X", 0x12345678);
+	compare_outputs("[Test_44] - Hexadecimal uppercase INT_MAX: %X", INT_MAX);
+	compare_outputs("[Test_45] - Hexadecimal uppercase INT_MIN: %X", INT_MIN);
+	compare_outputs("[Test_46] - Hexadecimal uppercase UINT_MAX: %X", UINT_MAX);
+
+	compare_outputs("[Test_47] - Hexadecimal uppercase (LONG_MAX): %X", LONG_MAX);  // Should print the hexadecimal representation of LONG_MAX in uppercase
+	compare_outputs("[Test_48] - Hexadecimal uppercase (LONG_MIN): %X", LONG_MIN);  // Should print the hexadecimal representation of LONG_MIN in uppercase
+	compare_outputs("[Test_49] - Hexadecimal uppercase (ULONG_MAX): %X", ULONG_MAX);  // Should print the hexadecimal representation of ULONG_MAX in uppercase
+	compare_outputs("[Test_50] - Hexadecimal uppercase (9223372036854775807LL): %X", 9223372036854775807LL);  // Uppercase hex for largest signed 64-bit integer
+	compare_outputs("[Test_51] - Hexadecimal uppercase (various large values): %X %X %X %X %X %X %X", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);  // Mix of large, small, and negative values
 
 	// %%: Percent sign tests
-	compare_outputs("[Test_42] - Single percent sign: %%");
-	compare_outputs("[Test_43] - Multiple percent signs: %% %% %%");
+	compare_outputs("[Test_52] - Single percent sign: %%");
+	compare_outputs("[Test_53] - Multiple percent signs: %% %% %%");
 
 	// Mixed format specifier tests
-	compare_outputs("[Test_44] - Mixed formats: %c %s %d %p %% %x", 'X', "Testing", 42, p, 255);
+	compare_outputs("[Test_54] - Mixed formats: %c %s %d %p %% %x", 'X', "Testing", 42, p, 255);
 
 	// Additional edge cases
-	compare_outputs("[Test_45] - Negative value in unsigned format: %u", -1); // Should print a large unsigned number
-	compare_outputs("[Test_46] - Negative pointer: %p", (void *)-1); // Undefined behavior but tested
+	compare_outputs("[Test_55] - Negative value in unsigned format: %u", -1); // Should print a large unsigned number
+	compare_outputs("[Test_56] - Negative pointer: %p", (void *)-1); // Undefined behavior but tested
+
+
+	// %%: Percent sign tests
+	compare_outputs("[Test_57] - Single percent sign: %%");
+	compare_outputs("[Test_58] - Multiple percent signs: %% %% %%");
+
+	// Mixed format specifier tests
+	compare_outputs("[Test_59] - Mixed formats: %c %s %d %p %% %x", 'X', "Testing", 42, p, 255);
+
+	// Additional edge cases
+	compare_outputs("[Test_60] - Negative value in unsigned format: %u", -1); // Should print a large unsigned number
+	compare_outputs("[Test_61] - Negative pointer: %p", (void *)-1); // Undefined behavior but tested
 
 	// Long string test
 	char *long_str = malloc(10000);
 	for (int i = 0; i < 9999; i++) long_str[i] = 'A';
 	long_str[9999] = '\0';
-	compare_outputs("[Test_47] - Very long string: %s", long_str);
+	compare_outputs("[Test_62] - Very long string: %s", long_str);
 	free(long_str);
 
 	// Combining specifiers
-	compare_outputs("[Test_48] - Combined specifiers: %d %u %x %X", 12345, 12345U, 0xabc, 0xABC);
-	compare_outputs("[Test_49] - Negative decimal with unsigned: %d %u", -1000, -1000);
+	compare_outputs("[Test_63] - Combined specifiers: %d %u %x %X", 12345, 12345U, 0xabc, 0xABC);
+	compare_outputs("[Test_64] - Negative decimal with unsigned: %d %u", -1000, -1000);
 
 	// Large value tests
-	compare_outputs("[Test_50] - Large positive value: %d", 2147483647); // INT_MAX
-	compare_outputs("[Test_51] - Large negative value: %d", -2147483647); // -INT_MAX
-	compare_outputs("[Test_52] - Unsigned large value: %u", 4294967295U); // UINT_MAX
+	compare_outputs("[Test_65] - Large positive value: %d", 2147483647); // INT_MAX
+	compare_outputs("[Test_66] - Large negative value: %d", -2147483647); // -INT_MAX
+	compare_outputs("[Test_67] - Unsigned large value: %u", 4294967295U); // UINT_MAX
 
 	// // Null strings and edge cases
 	// compare_outputs("[Test_53] - Null string: %s", NULL);
@@ -190,7 +215,7 @@ int	main(void)
 	// compare_outputs("[Test_56] - Zero-padded width: %010d", 42); // Optional: Zero-padding
 
 	// Escaped format specifiers
-	compare_outputs("[Test_57] - Escaped format specifiers: %%d %%s %%p %%x");
+	compare_outputs("[Test_68] - Escaped format specifiers: %%d %%s %%p %%x");
 
 	return 0;
 }
