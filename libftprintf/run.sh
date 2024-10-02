@@ -1,1 +1,1 @@
-cc -Wextra -Wall -Werror ft_printf.c -L. -lftprintf -L./libft -lft -I. -I./libft && ./a.out
+cc -Wextra -Wall -Werror ft_printf.c -L. -lftprintf  -I.  && ./a.out
