@@ -6,14 +6,18 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 23:20:15 by nastamid          #+#    #+#             */
-/*   Updated: 2024/10/02 13:50:09 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:28:11 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen(char *str)
+int	ft_strlen(const char *str)
 {
 	int	i;
 
+	if (str == 0)
+	{
+		return (0);
+	}
 	i = 0;
 	while (str[i])
 		i++;

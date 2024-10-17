@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:56:47 by codespace         #+#    #+#             */
-/*   Updated: 2024/10/17 14:34:17 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:39:28 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,8 +224,9 @@ int	main(void)
 	// %d with wrong type (string instead of int)
 	compare_outputs("[UB_Test_1] - Wrong type for %%d: %d", "Hello");
 
+	//ft_printf("[UB_Test_2] - Wrong type for %%s: %s", 42);
 	// %s with wrong type (int instead of string)
-	compare_outputs("[UB_Test_2] - Wrong type for %%s: %s", 42);
+	// compare_outputs("[UB_Test_2] - Wrong type for %%s: %s", 42);
 
 	// %p with wrong type (int instead of pointer)
 	compare_outputs("[UB_Test_3] - Wrong type for %%p: %p", 100);

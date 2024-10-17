@@ -6,14 +6,14 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 15:17:27 by nastamid          #+#    #+#             */
-/*   Updated: 2024/10/02 13:50:33 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:33:50 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <unistd.h>
 
-int	print_string(char *str)
+int	print_string(const char *str)
 {
 	if (!str)
 	{

@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 12:27:31 by nastamid          #+#    #+#             */
-/*   Updated: 2024/10/17 11:25:07 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:21:18 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 # include <stdarg.h>
 # include <stdbool.h>
 
-int		ft_strlen(char *str);
+int		ft_strlen(const char *str);
 char	*ft_itoa(int n);
 char	*ft_strdup(const char *s);
 
 int		print_char(char c);
-int		print_string(char *str);
+int		print_string(const char *str);
 int		print_digit(int digit);
 int		print_udigit(unsigned int digit);
 int		print_pointer(void *ptr);
