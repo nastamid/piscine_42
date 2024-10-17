@@ -6,16 +6,16 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 10:31:42 by codespace         #+#    #+#             */
-/*   Updated: 2024/10/02 13:50:25 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/10/17 11:29:04 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdlib.h>
 
-static int	count_hex(unsigned int n)
+static unsigned int	count_hex(unsigned int n)
 {
-	int	count;
+	unsigned int	count;
 
 	count = 1;
 	while (n / 16)
@@ -28,10 +28,10 @@ static int	count_hex(unsigned int n)
 
 static char	*number_to_hex(unsigned int number, bool is_uppercase)
 {
-	char	*s;
-	int		char_count;
-	int		remainder;
-	char	hex_letter;
+	char			*s;
+	char			hex_letter;
+	unsigned int	char_count;
+	unsigned int	remainder;
 
 	hex_letter = 'a';
 	if (is_uppercase)
@@ -56,8 +56,8 @@ static char	*number_to_hex(unsigned int number, bool is_uppercase)
 
 int	print_hex(unsigned int n, bool is_uppercase)
 {
-	char	*hex;
-	int		char_count;
+	char			*hex;
+	unsigned int	char_count;
 
 	char_count = 0;
 	hex = number_to_hex(n, is_uppercase);
