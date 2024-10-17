@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 10:31:42 by codespace         #+#    #+#             */
-/*   Updated: 2024/10/17 11:29:04 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:15:57 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int	print_hex(unsigned int n, bool is_uppercase)
 	if (hex)
 	{
 		char_count = print_string(hex);
+		free(hex);
 	}
 	return (char_count);
 }
