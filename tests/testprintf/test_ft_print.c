@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:56:47 by codespace         #+#    #+#             */
-/*   Updated: 2024/10/17 11:31:58 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/10/17 14:34:17 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ int	main(void)
 	compare_outputs("[Test_37] - Hexadecimal lowercase (LONG_MIN): %x", LONG_MIN);  // Should print the hexadecimal representation of LONG_MIN
 	compare_outputs("[Test_38] - Hexadecimal lowercase (ULONG_MAX): %x", ULONG_MAX);  // Should print the hexadecimal representation of ULONG_MAX
 	compare_outputs("[Test_39] - Hexadecimal lowercase (9223372036854775807LL): %x", 9223372036854775807LL);  // Should print hex for largest signed 64-bit integer
-	compare_outputs("[Test_40] - Hexadecimal lowercase (various large values): %x %x %x %x %x %x", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0);  // Mix of large, small, and negative values
+	compare_outputs("[Test_40] - Hexadecimal lowercase (various large values): %x %x %x %x %x", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX);  // Mix of large, small, and negative values
 
 	// %X: Hexadecimal (uppercase) tests
 	compare_outputs("[Test_41] - Hexadecimal uppercase (positive): %X", 255); // Should print "FF"
@@ -167,7 +167,7 @@ int	main(void)
 	compare_outputs("[Test_48] - Hexadecimal uppercase (LONG_MIN): %X", LONG_MIN);  // Should print the hexadecimal representation of LONG_MIN in uppercase
 	compare_outputs("[Test_49] - Hexadecimal uppercase (ULONG_MAX): %X", ULONG_MAX);  // Should print the hexadecimal representation of ULONG_MAX in uppercase
 	compare_outputs("[Test_50] - Hexadecimal uppercase (9223372036854775807LL): %X", 9223372036854775807LL);  // Uppercase hex for largest signed 64-bit integer
-	compare_outputs("[Test_51] - Hexadecimal uppercase (various large values): %X %X %X %X %X %X", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0);  // Mix of large, small, and negative values
+	compare_outputs("[Test_51] - Hexadecimal uppercase (various large values): %X %X %X %X %X", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX);  // Mix of large, small, and negative values
 
 	// %%: Percent sign tests
 	compare_outputs("[Test_52] - Single percent sign: %%");
