@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 12:04:10 by nastamid          #+#    #+#             */
-/*   Updated: 2024/10/17 15:34:15 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/10/23 13:44:47 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int	ft_printf(const char *format, ...)
 	va_list	args;
 	int		result;
 
+	if (!format || !*format)
+		return (0);
 	va_start(args, format);
 	result = vft_printf(format, args);
 	va_end(args);
