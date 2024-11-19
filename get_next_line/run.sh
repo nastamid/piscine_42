@@ -1,1 +1,0 @@
-cc get_next_line.c -Wall -Wextra -Werror -D BUFFER_SIZE=42 test.txt

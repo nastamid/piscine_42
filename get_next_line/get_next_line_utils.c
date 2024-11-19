@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 17:35:16 by nastamid          #+#    #+#             */
-/*   Updated: 2024/11/19 14:52:15 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/11/20 14:45:08 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,18 @@
 
 t_list	*get_last_node(t_list *list)
 {
-	if (NULL == list)
+	if (list == NULL)
 		return (NULL);
 	while (list->next)
 		list = list->next;
 	return (list);
 }
 
-
 int	contains_newline(t_list *list)
 {
 	int	i;
 
-	if (NULL == list)
+	if (list == NULL)
 		return (0);
 	while (list)
 	{
@@ -35,7 +34,7 @@ int	contains_newline(t_list *list)
 		{
 			if (list->content[i] == '\n')
 				return (1);
-			++i;
+			i++;
 		}
 		list = list->next;
 	}
@@ -47,7 +46,7 @@ void	copy_content(t_list *list, char *str)
 	int	i;
 	int	k;
 
-	if (NULL == list)
+	if (list == NULL)
 		return ;
 	k = 0;
 	while (list)
@@ -68,14 +67,14 @@ void	copy_content(t_list *list, char *str)
 	str[k] = '\0';
 }
 
-int	len_to_newline(t_list *list)
+int	char_count_up_to_newline(t_list *list)
 {
 	int	i;
-	int	len;
+	int	count;
 
 	if (NULL == list)
 		return (0);
-	len = 0;
+	count = 0;
 	while (list)
 	{
 		i = 0;
@@ -83,22 +82,22 @@ int	len_to_newline(t_list *list)
 		{
 			if (list->content[i] == '\n')
 			{
-				++len;
-				return (len);
+				count++;
+				return (count);
 			}
-			++i;
-			++len;
+			i++;
+			count++;
 		}
 		list = list->next;
-	}	
-	return (len);
+	}
+	return (count);
 }
 
-void	dealloc(t_list **list, t_list *clean_node, char *buf)
+void	free_memory(t_list **list, t_list *clean_node, char *buf)
 {
 	t_list	*tmp;
 
-	if (NULL == *list)
+	if (*list == NULL)
 		return ;
 	while (*list)
 	{
