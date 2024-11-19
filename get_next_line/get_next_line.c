@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 17:35:13 by nastamid          #+#    #+#             */
-/*   Updated: 2024/11/19 14:55:11 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/11/19 15:18:04 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	append(t_list **list, char *buf)
 
 void	create_list(t_list **list, int fd)
 {
-	int		char_read;	
+	int		char_read;
 	char	*buf;
 
 	while (!contains_newline(*list))
@@ -103,20 +103,4 @@ char	*get_next_line(int fd)
 	next_line = get_line(list);
 	cleanup_list(&list);
 	return (next_line);
-}
-
-int	main(void)
-{
-	int		fd;
-	char	*line;
-	int		lines;
-
-	lines = 1;
-	fd = open("test.txt", O_RDONLY);
-	while ((line = get_next_line(fd)))
-	{
-		printf("%d->%s", lines++, line);
-		free(line);
-	}
-	
 }
