@@ -6,28 +6,117 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 17:35:13 by nastamid          #+#    #+#             */
-/*   Updated: 2024/10/16 13:44:59 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/11/19 14:55:11 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "get_next_line.h"
+
+void	cleanup_list(t_list **list)
+{
+	t_list	*last_node;
+	t_list	*empty_node;
+	int		i;
+	int		k;
+	char	*buf;
+
+	buf = malloc(BUFFER_SIZE + 1);
+	empty_node = malloc(sizeof(t_list));
+	if (NULL == buf || empty_node == NULL)
+		return ;
+	last_node = get_last_node(*list);
+	i = 0;
+	k = 0;
+	while (last_node->content[i] && last_node->content[i] != '\n')
+		i++;
+	while (last_node->content[i] && last_node->content[++i])
+		buf[k++] = last_node->content[i];
+	buf[k] = '\0';
+	empty_node->content = buf;
+	empty_node->next = NULL;
+	dealloc(list, empty_node, buf);
+}
+
+char	*get_line(t_list *list)
+{
+	int		str_len;
+	char	*next_str;
+
+	if (NULL == list)
+		return (NULL);
+	str_len = len_to_newline(list);
+	next_str = malloc(str_len + 1);
+	if (NULL == next_str)
+		return (NULL);
+	copy_content(list, next_str);
+	return (next_str);
+}
+
+void	append(t_list **list, char *buf)
+{
+	t_list	*new_node;
+	t_list	*last_node;
+
+	last_node = get_last_node(*list);
+	new_node = malloc(sizeof(t_list));
+	if (NULL == new_node)
+		return ;
+	if (NULL == last_node)
+		*list = new_node;
+	else
+		last_node->next = new_node;
+	new_node->content = buf;
+	new_node->next = NULL;
+}
+
+void	create_list(t_list **list, int fd)
+{
+	int		char_read;	
+	char	*buf;
+
+	while (!contains_newline(*list))
+	{
+		buf = malloc(BUFFER_SIZE + 1);
+		if (NULL == buf)
+			return ;
+		char_read = read(fd, buf, BUFFER_SIZE);
+		if (!char_read)
+		{
+			free(buf);
+			return ;
+		}
+		buf[char_read] = '\0';
+		append(list, buf);
+	}
+}
 
 char	*get_next_line(int fd)
 {
-	FILE	*f;
-	char	c;
+	static t_list	*list = NULL;
+	char			*next_line;
 
-	f = fopen("test.txt", "r");
-	c = getc(f);
-	while (c != EOF)
-	{
-		putchar(c);
-		c = getc(f);
-	}
-	return (0);
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &next_line, 0) < 0)
+		return (NULL);
+	create_list(&list, fd);
+	if (list == NULL)
+		return (NULL);
+	next_line = get_line(list);
+	cleanup_list(&list);
+	return (next_line);
 }
 
 int	main(void)
 {
-	get_next_line(1);
+	int		fd;
+	char	*line;
+	int		lines;
+
+	lines = 1;
+	fd = open("test.txt", O_RDONLY);
+	while ((line = get_next_line(fd)))
+	{
+		printf("%d->%s", lines++, line);
+		free(line);
+	}
+	
 }
