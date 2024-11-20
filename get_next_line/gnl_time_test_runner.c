@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gnl_runner.c                                       :+:      :+:    :+:   */
+/*   gnl_time_test_runner.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:12:57 by nastamid          #+#    #+#             */
-/*   Updated: 2024/11/20 13:44:36 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/11/20 16:16:44 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(void)
 
 	clock_t start_time, end_time;
 	lines = 1;
-	fd = open("gnlTester/files/big_line_no_nl", O_RDONLY);
+	fd = open("test.txt", O_RDONLY);
 	if (fd < 0)
 	{
 		perror("Error opening file");
