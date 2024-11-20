@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 17:35:16 by nastamid          #+#    #+#             */
-/*   Updated: 2024/11/19 14:52:15 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/11/19 15:18:06 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ t_list	*get_last_node(t_list *list)
 		list = list->next;
 	return (list);
 }
-
 
 int	contains_newline(t_list *list)
 {
@@ -90,13 +89,13 @@ int	len_to_newline(t_list *list)
 			++len;
 		}
 		list = list->next;
-	}	
+	}
 	return (len);
 }
 
 void	dealloc(t_list **list, t_list *clean_node, char *buf)
 {
-	t_list	*tmp;
+	t_list *tmp;
 
 	if (NULL == *list)
 		return ;

@@ -1,4 +1,4 @@
-CFILES = get_next_line.c get_next_line_utils.c
+CFILES = get_next_line.c get_next_line_utils.c gnl_runner.c
 OUTPUT = gnl_program
 CFLAGS = -Wall -Wextra -Werror -D BUFFER_SIZE=42
 
