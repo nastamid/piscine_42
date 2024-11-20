@@ -1,4 +1,6 @@
-CFILES = get_next_line.c get_next_line_utils.c gnl_runner.c
+CFILES = get_next_line.c get_next_line_utils.c
+TIME_TEST_FILE = gnl_time_test_runner.c
+TEST_FILE = gnl_test_runner.c
 OUTPUT = gnl_program
 CFLAGS = -Wall -Wextra -Werror -D BUFFER_SIZE=$(BUFFER)
 
@@ -15,6 +17,14 @@ bigbuf:
 
 run: build
 	./$(OUTPUT) text.txt
+
+run_time_test: $(CFILES) $(TIME_TEST_FILE)
+	cc $(CFILES) $(TIME_TEST_FILE) $(CFLAGS) -g -o $(OUTPUT)
+	./$(OUTPUT)
+
+run_test: $(CFILES) $(TEST_FILE)
+	cc $(CFILES) $(TEST_FILE) $(CFLAGS) -g -o $(OUTPUT)
+	./$(OUTPUT)
 
 clean:
 	rm -f $(OUTPUT)
