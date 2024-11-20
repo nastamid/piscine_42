@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 17:35:13 by nastamid          #+#    #+#             */
-/*   Updated: 2024/11/19 15:18:04 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/11/20 14:09:39 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	cleanup_list(t_list **list)
 
 	buf = malloc(BUFFER_SIZE + 1);
 	empty_node = malloc(sizeof(t_list));
-	if (NULL == buf || empty_node == NULL)
+	if (buf == NULL || empty_node == NULL)
 		return ;
 	last_node = get_last_node(*list);
 	i = 0;
@@ -42,30 +42,30 @@ char	*get_line(t_list *list)
 	int		str_len;
 	char	*next_str;
 
-	if (NULL == list)
+	if (list == NULL)
 		return (NULL);
-	str_len = len_to_newline(list);
+	str_len = char_count_up_to_newline(list);
 	next_str = malloc(str_len + 1);
-	if (NULL == next_str)
+	if (next_str == NULL)
 		return (NULL);
 	copy_content(list, next_str);
 	return (next_str);
 }
 
-void	append(t_list **list, char *buf)
+void	append(t_list **list, char *content)
 {
 	t_list	*new_node;
 	t_list	*last_node;
 
 	last_node = get_last_node(*list);
 	new_node = malloc(sizeof(t_list));
-	if (NULL == new_node)
+	if (new_node == NULL)
 		return ;
-	if (NULL == last_node)
+	if (last_node == NULL)
 		*list = new_node;
 	else
 		last_node->next = new_node;
-	new_node->content = buf;
+	new_node->content = content;
 	new_node->next = NULL;
 }
 
@@ -77,7 +77,7 @@ void	create_list(t_list **list, int fd)
 	while (!contains_newline(*list))
 	{
 		buf = malloc(BUFFER_SIZE + 1);
-		if (NULL == buf)
+		if (buf == NULL)
 			return ;
 		char_read = read(fd, buf, BUFFER_SIZE);
 		if (!char_read)
