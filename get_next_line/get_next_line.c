@@ -6,13 +6,13 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 17:35:13 by nastamid          #+#    #+#             */
-/*   Updated: 2024/11/20 14:45:00 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/11/20 18:16:51 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	cleanup_list(t_list **list)
+int	cleanup_list(t_list **list)
 {
 	t_list	*last_node;
 	t_list	*node;
@@ -23,7 +23,7 @@ void	cleanup_list(t_list **list)
 	buf = malloc(BUFFER_SIZE + 1);
 	node = malloc(sizeof(t_list));
 	if (buf == NULL || node == NULL)
-		return ;
+		return (0);
 	last_node = get_last_node(*list);
 	i = 0;
 	j = 0;
@@ -38,6 +38,7 @@ void	cleanup_list(t_list **list)
 	node->content = buf;
 	node->next = NULL;
 	free_memory(list, node, buf);
+	retrun(1);
 }
 
 char	*get_line(t_list *list)
@@ -72,7 +73,7 @@ void	append(t_list **list, char *content)
 	new_node->next = NULL;
 }
 
-void	create_list(t_list **list, int fd)
+int	create_list(t_list **list, int fd)
 {
 	int		char_read;
 	char	*buf;
@@ -81,16 +82,18 @@ void	create_list(t_list **list, int fd)
 	{
 		buf = malloc(BUFFER_SIZE + 1);
 		if (buf == NULL)
-			return ;
+			return (0);
 		char_read = read(fd, buf, BUFFER_SIZE);
-		if (!char_read)
+		if (char_read <= 0)
 		{
+			// TODO: Clean list also
 			free(buf);
-			return ;
+			return (0);
 		}
 		buf[char_read] = '\0';
 		append(list, buf);
 	}
+	return (1);
 }
 
 char	*get_next_line(int fd)
@@ -98,12 +101,16 @@ char	*get_next_line(int fd)
 	static t_list	*list = NULL;
 	char			*next_line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &next_line, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	create_list(&list, fd);
 	if (list == NULL)
 		return (NULL);
 	next_line = get_line(list);
-	cleanup_list(&list);
+	if(cleanup_list(&list))
+	{
+		//TODO: Clean the list
+		return NULL;
+	}
 	return (next_line);
 }
