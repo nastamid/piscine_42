@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 17:35:13 by nastamid          #+#    #+#             */
-/*   Updated: 2024/11/20 14:09:39 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/11/20 14:45:00 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,29 @@
 void	cleanup_list(t_list **list)
 {
 	t_list	*last_node;
-	t_list	*empty_node;
+	t_list	*node;
 	int		i;
-	int		k;
+	int		j;
 	char	*buf;
 
 	buf = malloc(BUFFER_SIZE + 1);
-	empty_node = malloc(sizeof(t_list));
-	if (buf == NULL || empty_node == NULL)
+	node = malloc(sizeof(t_list));
+	if (buf == NULL || node == NULL)
 		return ;
 	last_node = get_last_node(*list);
 	i = 0;
-	k = 0;
+	j = 0;
 	while (last_node->content[i] && last_node->content[i] != '\n')
 		i++;
-	while (last_node->content[i] && last_node->content[++i])
-		buf[k++] = last_node->content[i];
-	buf[k] = '\0';
-	empty_node->content = buf;
-	empty_node->next = NULL;
-	dealloc(list, empty_node, buf);
+	while (last_node->content[i] && last_node->content[i])
+	{
+		i++;
+		buf[j++] = last_node->content[i];
+	}
+	buf[j] = '\0';
+	node->content = buf;
+	node->next = NULL;
+	free_memory(list, node, buf);
 }
 
 char	*get_line(t_list *list)
