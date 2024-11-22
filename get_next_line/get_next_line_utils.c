@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 17:35:16 by nastamid          #+#    #+#             */
-/*   Updated: 2024/11/20 14:45:08 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/11/22 17:29:56 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ int	contains_newline(t_list *list)
 	return (0);
 }
 
-void	copy_content(t_list *list, char *str)
+int	copy_content(t_list *list, char *str)
 {
 	int	i;
 	int	k;
 
 	if (list == NULL)
-		return ;
+		return (0);
 	k = 0;
 	while (list)
 	{
@@ -58,13 +58,14 @@ void	copy_content(t_list *list, char *str)
 			{
 				str[k++] = '\n';
 				str[k] = '\0';
-				return ;
+				return (1);
 			}
 			str[k++] = list->content[i++];
 		}
 		list = list->next;
 	}
 	str[k] = '\0';
+	return (1);
 }
 
 int	char_count_up_to_newline(t_list *list)
@@ -93,25 +94,21 @@ int	char_count_up_to_newline(t_list *list)
 	return (count);
 }
 
-void	free_memory(t_list **list, t_list *clean_node, char *buf)
+void	free_memory(t_list **list, char *buf)
 {
 	t_list	*tmp;
 
+	if (buf != NULL)
+		free(buf);
 	if (*list == NULL)
 		return ;
 	while (*list)
 	{
 		tmp = (*list)->next;
-		free((*list)->content);
+		if ((*list)->content)
+			free((*list)->content);
 		free(*list);
 		*list = tmp;
 	}
 	*list = NULL;
-	if (clean_node->content[0])
-		*list = clean_node;
-	else
-	{
-		free(buf);
-		free(clean_node);
-	}
 }
