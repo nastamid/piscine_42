@@ -6,11 +6,20 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 17:35:16 by nastamid          #+#    #+#             */
-/*   Updated: 2024/11/22 16:03:29 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/11/22 17:29:56 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+t_list	*get_last_node(t_list *list)
+{
+	if (list == NULL)
+		return (NULL);
+	while (list->next)
+		list = list->next;
+	return (list);
+}
 
 int	contains_newline(t_list *list)
 {
@@ -84,29 +93,22 @@ int	char_count_up_to_newline(t_list *list)
 	}
 	return (count);
 }
-int	cleanup_list(t_list **list)
-{
-	t_list	*last_node;
-	t_list	*node;
-	char	*buf;
 
-	buf = malloc(BUFFER_SIZE + 1);
-	if (buf == NULL)
-		return (0);
-	node = malloc(sizeof(t_list));
-	if (node == NULL)
-	{
+void	free_memory(t_list **list, char *buf)
+{
+	t_list	*tmp;
+
+	if (buf != NULL)
 		free(buf);
-		return (0);
-	}
-	last_node = get_last_node(*list);
-	if (last_node == NULL)
+	if (*list == NULL)
+		return ;
+	while (*list)
 	{
-		free(buf);
-		free(node);
-		return (0);
+		tmp = (*list)->next;
+		if ((*list)->content)
+			free((*list)->content);
+		free(*list);
+		*list = tmp;
 	}
-	move_left_overs_to_new_node(last_node, node, buf);
-	free_memory(list, node, buf);
-	return (1);
+	*list = NULL;
 }

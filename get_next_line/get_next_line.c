@@ -6,32 +6,41 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 17:35:13 by nastamid          #+#    #+#             */
-/*   Updated: 2024/11/22 16:03:18 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/11/22 17:56:15 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	move_left_overs_to_new_node(t_list *last_node, t_list *node, char *buf)
+int	old_to_new_list(t_list **list, t_list **new_list)
 {
-	int	i;
-	int	j;
+	t_list	*last_node;
+	int		i;
+	int		j;
+	char	*buf;
 
+	buf = malloc(BUFFER_SIZE + 1);
+	if (buf == NULL)
+		return (0);
+	last_node = get_last_node(*list);
 	i = 0;
 	j = 0;
 	while (last_node->content[i] && last_node->content[i] != '\n')
 		i++;
-	while (last_node->content[i] && last_node->content[i])
-	{
-		i++;
+	while (last_node->content[i] && last_node->content[i++])
 		buf[j++] = last_node->content[i];
-	}
 	buf[j] = '\0';
-	node->content = buf;
-	node->next = NULL;
+	(*new_list)->content = buf;
+	(*new_list)->next = NULL;
+	free_memory(list, NULL);
+	if (new_list && (*new_list)->content[0])
+		*list = *new_list;
+	else
+		free_memory(new_list, NULL);
+	return (1);
 }
 
-char	*combine_content_to_string(t_list *list)
+char	*get_combined_str(t_list *list)
 {
 	int		str_len;
 	char	*combined_str;
@@ -43,7 +52,10 @@ char	*combine_content_to_string(t_list *list)
 	if (combined_str == NULL)
 		return (NULL);
 	if (!copy_content(list, combined_str))
+	{
+		free(combined_str);
 		return (NULL);
+	}
 	return (combined_str);
 }
 
@@ -78,14 +90,12 @@ int	create_list(t_list **list, int fd)
 		char_read = read(fd, buf, BUFFER_SIZE);
 		if (char_read <= 0)
 		{
-			free_list(list);
 			free(buf);
 			return (0);
 		}
 		buf[char_read] = '\0';
 		if (!append(list, buf))
 		{
-			free_list(list);
 			free(buf);
 			return (0);
 		}
@@ -96,23 +106,28 @@ int	create_list(t_list **list, int fd)
 char	*get_next_line(int fd)
 {
 	static t_list	*list = NULL;
-	char			*combined_str;
+	char			*next_line;
+	t_list			*new_list;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (!create_list(&list, fd))
 	{
-		free_list(&list);
+		free_memory(&list, NULL);
 		return (NULL);
 	}
 	if (list == NULL)
 		return (NULL);
-	combined_str = combine_content_to_string(list);
-	if (!cleanup_list(&list))
+	next_line = get_combined_str(list);
+	new_list = malloc(sizeof(t_list));
+	if (new_list == NULL)
+		return (NULL);
+	if (!old_to_new_list(&list, &new_list))
 	{
-		free(combined_str);
-		free_list(&list);
+		free(new_list);
+		free(next_line);
+		free_memory(&list, NULL);
 		return (NULL);
 	}
-	return (combined_str);
+	return (next_line);
 }
