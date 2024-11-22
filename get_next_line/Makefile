@@ -1,4 +1,4 @@
-CFILES = get_next_line.c get_next_line_utils.c get_next_line_utils2.c
+CFILES = get_next_line.c get_next_line_utils.c
 TIME_TEST_FILE = gnl_time_test_runner.c
 TEST_FILE = gnl_test_runner.c
 OUTPUT = gnl_program.out
