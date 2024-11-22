@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 17:35:13 by nastamid          #+#    #+#             */
-/*   Updated: 2024/11/22 19:06:04 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/11/22 19:12:11 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	create_list(t_list **list, int fd)
 		if (char_read <= 0)
 		{
 			free(buf);
-			return;
+			return ;
 		}
 		buf[char_read] = '\0';
 		if (!append(list, buf))
