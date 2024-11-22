@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 17:35:16 by nastamid          #+#    #+#             */
-/*   Updated: 2024/11/22 17:29:56 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/11/22 18:06:22 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,3 +112,4 @@ void	free_memory(t_list **list, char *buf)
 	}
 	*list = NULL;
 }
+
