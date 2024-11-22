@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 17:35:16 by nastamid          #+#    #+#             */
-/*   Updated: 2024/11/22 18:06:22 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/11/22 19:01:20 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,22 +94,18 @@ int	char_count_up_to_newline(t_list *list)
 	return (count);
 }
 
-void	free_memory(t_list **list, char *buf)
+void	free_list(t_list **list)
 {
 	t_list	*tmp;
 
-	if (buf != NULL)
-		free(buf);
 	if (*list == NULL)
 		return ;
 	while (*list)
 	{
 		tmp = (*list)->next;
-		if ((*list)->content)
-			free((*list)->content);
+		free((*list)->content);
 		free(*list);
 		*list = tmp;
 	}
 	*list = NULL;
 }
-

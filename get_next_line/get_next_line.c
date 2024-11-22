@@ -6,7 +6,7 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 17:35:13 by nastamid          #+#    #+#             */
-/*   Updated: 2024/11/22 18:10:52 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/11/22 19:06:04 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@ int	old_to_new_list(t_list **list, t_list **new_list)
 	j = 0;
 	while (last_node->content[i] && last_node->content[i] != '\n')
 		i++;
-	while (last_node->content[i] && last_node->content[i++])
+	while (last_node->content[i] && last_node->content[++i])
 		buf[j++] = last_node->content[i];
 	buf[j] = '\0';
 	(*new_list)->content = buf;
 	(*new_list)->next = NULL;
-	free_memory(list, NULL);
+	free_list(list);
 	if (new_list && (*new_list)->content[0])
 		*list = *new_list;
 	else
-		free_memory(new_list, NULL);
+		free_list(new_list);
 	return (1);
 }
 
@@ -77,7 +77,7 @@ int	append(t_list **list, char *content)
 	return (1);
 }
 
-int	create_list(t_list **list, int fd)
+void	create_list(t_list **list, int fd)
 {
 	int		char_read;
 	char	*buf;
@@ -86,21 +86,20 @@ int	create_list(t_list **list, int fd)
 	{
 		buf = malloc(BUFFER_SIZE + 1);
 		if (buf == NULL)
-			return (0);
+			return ;
 		char_read = read(fd, buf, BUFFER_SIZE);
 		if (char_read <= 0)
 		{
 			free(buf);
-			return (0);
+			return;
 		}
 		buf[char_read] = '\0';
 		if (!append(list, buf))
 		{
 			free(buf);
-			return (0);
+			return ;
 		}
 	}
-	return (1);
 }
 
 char	*get_next_line(int fd)
@@ -111,11 +110,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	if (!create_list(&list, fd))
-	{
-		free_memory(&list, NULL);
-		return (NULL);
-	}
+	create_list(&list, fd);
 	if (list == NULL)
 		return (NULL);
 	next_line = get_combined_str(list);
@@ -126,7 +121,7 @@ char	*get_next_line(int fd)
 	{
 		free(new_list);
 		free(next_line);
-		free_memory(&list, NULL);
+		free_list(&list);
 		return (NULL);
 	}
 	return (next_line);
