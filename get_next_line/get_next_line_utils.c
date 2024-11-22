@@ -6,20 +6,11 @@
 /*   By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 17:35:16 by nastamid          #+#    #+#             */
-/*   Updated: 2024/11/20 14:45:08 by nastamid         ###   ########.fr       */
+/*   Updated: 2024/11/22 16:03:29 by nastamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-t_list	*get_last_node(t_list *list)
-{
-	if (list == NULL)
-		return (NULL);
-	while (list->next)
-		list = list->next;
-	return (list);
-}
 
 int	contains_newline(t_list *list)
 {
@@ -41,13 +32,13 @@ int	contains_newline(t_list *list)
 	return (0);
 }
 
-void	copy_content(t_list *list, char *str)
+int	copy_content(t_list *list, char *str)
 {
 	int	i;
 	int	k;
 
 	if (list == NULL)
-		return ;
+		return (0);
 	k = 0;
 	while (list)
 	{
@@ -58,13 +49,14 @@ void	copy_content(t_list *list, char *str)
 			{
 				str[k++] = '\n';
 				str[k] = '\0';
-				return ;
+				return (1);
 			}
 			str[k++] = list->content[i++];
 		}
 		list = list->next;
 	}
 	str[k] = '\0';
+	return (1);
 }
 
 int	char_count_up_to_newline(t_list *list)
@@ -92,26 +84,29 @@ int	char_count_up_to_newline(t_list *list)
 	}
 	return (count);
 }
-
-void	free_memory(t_list **list, t_list *clean_node, char *buf)
+int	cleanup_list(t_list **list)
 {
-	t_list	*tmp;
+	t_list	*last_node;
+	t_list	*node;
+	char	*buf;
 
-	if (*list == NULL)
-		return ;
-	while (*list)
-	{
-		tmp = (*list)->next;
-		free((*list)->content);
-		free(*list);
-		*list = tmp;
-	}
-	*list = NULL;
-	if (clean_node->content[0])
-		*list = clean_node;
-	else
+	buf = malloc(BUFFER_SIZE + 1);
+	if (buf == NULL)
+		return (0);
+	node = malloc(sizeof(t_list));
+	if (node == NULL)
 	{
 		free(buf);
-		free(clean_node);
+		return (0);
 	}
+	last_node = get_last_node(*list);
+	if (last_node == NULL)
+	{
+		free(buf);
+		free(node);
+		return (0);
+	}
+	move_left_overs_to_new_node(last_node, node, buf);
+	free_memory(list, node, buf);
+	return (1);
 }
