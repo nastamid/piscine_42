@@ -1,6 +1,6 @@
 # Compiler and flags
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -Iinclude -Ilibs/libft/include -Ilibs/ft_printf/include  -Ilibs/mlx_linux
+CFLAGS = -Wall -Wextra -Werror -Iinclude -Ilibs/libft/include -Ilibs/ft_printf/include  -Ilibs/mlx_linux/include
 LDFLAGS = -Llib -Llibs/mlx_linux
 
 # Libraries to link against
