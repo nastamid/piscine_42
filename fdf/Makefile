@@ -1,6 +1,6 @@
 # Compiler and flags
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -Iinclude -Ilibs/libft/include -Ilibs/ft_printf/include -Ilibs/getnextline/include -Ilibs/minilibx
+CFLAGS = -Wall -Wextra -Werror -Iinclude -Ilibs/libft/include -Ilibs/ft_printf/include  -Ilibs/mlx_linux
 LDFLAGS = -Llib -Llibs/mlx_linux
 
 # Libraries to link against
@@ -35,6 +35,10 @@ clean:
 # Clean up everything including the executable
 fclean: clean
 	rm -f $(NAME)
+
+# Rebuild and run
+run: re
+	./$(NAME)
 
 # Rebuild everything
 re: fclean all
