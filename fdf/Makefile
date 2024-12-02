@@ -1,23 +1,40 @@
+# Compiler and flags
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -Iinclude -Ilibs/libft/include -Ilibs/ft_printf/include -Ilibs/getnextline/include -Ilibs/minilibx
+LDFLAGS = -Llib -Llibs/mlx_linux
+
+# Libraries to link against
+LIBS = -lft -lftprintf -lmlx_Linux -L./libs -lXext -lX11 -lm -lz
+
+# Project details
 NAME = fdf.out
-CFILES = get_next_line.c get_next_line_utils.c
-TIME_TEST_FILE = gnl_time_test_runner.c
-TEST_FILE = gnl_test_runner.c
-CFLAGS = -Wall -Wextra -Werror 
-MLXFLAG = -lmlx -lXext -lX11
 
-all:
-	cc $(CFILES) $(TEST_FILE) $(CFLAGS) $(CBUFFER) -g -o $(NAME)
+# Explicitly list your source files here
+SRC = src/fdf.c # Replace with your actual source file paths
 
+# Automatically generate object files names from source files
+OBJ = $(SRC:.c=.o)
 
+# Targets
+.PHONY: all clean fclean re
+
+all: $(NAME)
+
+# Rule for creating the executable
+$(NAME): $(OBJ)
+	$(CC) $(OBJ) $(LDFLAGS) $(LIBS) -o $(NAME)
+
+# Rule for creating object files from source files
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Clean up object files
 clean:
-	rm -f $(OUTPUT)
+	rm -f $(OBJ)
 
-fclean:
-	clean 
-# todo:
+# Clean up everything including the executable
+fclean: clean
+	rm -f $(NAME)
 
-re:
-#todo
-
-valgrind: build
-	valgrind --leak-check=full ./$(NAME)
+# Rebuild everything
+re: fclean all
