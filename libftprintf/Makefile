@@ -6,7 +6,7 @@
 #    By: nastamid <nastamid@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/02 13:50:15 by nastamid          #+#    #+#              #
-#    Updated: 2024/10/02 13:50:15 by nastamid         ###   ########.fr        #
+#    Updated: 2024/12/02 13:30:57 by nastamid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,16 @@ fclean: clean
 
 # Force Rebuild - Force Clean and Rebuild
 re: fclean all
+
+run:
+	cc -Wextra -Wall -Werror ft_printf.c -L. -lftprintf  -I.  && ./a.out
+
+run_tests:
+	gcc -Wextra -Wall -Werror ../tests/testprintf/test_ft_print.c -L. -lftprintf -I.  && ./a.out
+
+run_funcheck:
+	gcc  -no-pie -g ../tests/testprintf/funcheck_ft_printf.c -L. -lftprintf -I.  && ./a.out
+	funcheck ./a.out
 
 # Mark targets as not files
 .PHONY: all clean fclean re 

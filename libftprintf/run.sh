@@ -1,1 +1,0 @@
-cc -Wextra -Wall -Werror ft_printf.c -L. -lftprintf  -I.  && ./a.out
